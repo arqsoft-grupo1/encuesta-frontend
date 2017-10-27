@@ -34,7 +34,7 @@ export class EncuestaComponent {
     //this.dataSource = new ExampleDataSource(data, this.paginator);
         this.ofertaService.getOferta().subscribe(
             oferta => {
-                console.log(oferta['oferta']);
+                // console.log(oferta['oferta']);
                 this.dataSource = new ExampleDataSource(oferta['oferta'], this.paginator);
             }
         );
