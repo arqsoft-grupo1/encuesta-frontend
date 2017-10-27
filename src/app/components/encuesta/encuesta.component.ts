@@ -11,6 +11,7 @@ import 'rxjs/add/operator/map';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { OfertaService } from "../../services/encuesta/oferta.service";
 import { Oferta } from "../../model/oferta";
+// import { MatExpansionModule } from '@angular/material';
 
 @Component({
   selector: 'Encuesta',
@@ -65,5 +66,3 @@ export class ExampleDataSource extends DataSource<any> {
 
      disconnect() {}
    }
-
-/*****************************************************************************/
