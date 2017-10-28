@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { OfertaService } from "../../../services/encuesta/oferta.service";
 import { Oferta } from "../../../model/oferta";
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { MatRadioModule } from '@angular/material';
+// import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'Expansion',
@@ -9,6 +11,7 @@ import { Oferta } from "../../../model/oferta";
   styleUrls: ['./expansion.component.css']
 })
 export class ExpansionComponent implements OnInit {
+
     opciones = [
                     {value: 'yacurse', viewValue: 'Ya curse'},
                     {value: 'todaviano', viewValue: 'Todavia no'},
@@ -21,6 +24,28 @@ export class ExpansionComponent implements OnInit {
                     {id: 4, nombre: 'IBD', orden: "1"}
                 ];
 
+    favoriteSeason: string;
+
+    seasons = [
+      'Winter',
+      'Spring',
+      'Summer',
+      'Autumn',
+    ];
+
+    step = 0;
+
+    setStep(index: number) {
+      this.step = index;
+    }
+
+    nextStep() {
+      this.step++;
+    }
+
+    prevStep() {
+      this.step--;
+    }
 
   constructor(private ofertaService: OfertaService) {
     //  this.oferta = this.ofertaService.getOferta();

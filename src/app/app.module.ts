@@ -8,6 +8,7 @@ import { MaterialModule } from './../material.module';
 import { OfertaService } from './services/encuesta/oferta.service'
 import { MatInputModule } from '@angular/material';
 import { ExpansionComponent } from './components/encuesta/expansion/expansion.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ExpansionComponent } from './components/encuesta/expansion/expansion.co
     HttpModule,
     BrowserAnimationsModule,
     MaterialModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule
   ],
   providers: [OfertaService],
   bootstrap: [AppComponent]
