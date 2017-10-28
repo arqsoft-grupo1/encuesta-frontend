@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OfertaService } from "../../../services/encuesta/oferta.service";
 import { Oferta } from "../../../model/oferta";
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { MatRadioModule } from '@angular/material';
 // import { NgModule } from '@angular/core';
 
