@@ -7,22 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-    cuatrimestreActual = "C1";
-    anoActual = "2018";
-    cuatAnoActual = this.anoActual+this.cuatrimestreActual;
-    anoActual2 = Date.now();
-    // cuatActual2;
+    date = new Date();
+    year = this.date.getFullYear();
+    cuatrimestre = this.getCuatrimestre();
 
 
   constructor() {
-    //   this.cuatActual2 = this.cuatrimestre();
   }
 
   ngOnInit() {
   }
 
-  // cuatrimestre(){
-  //
-  // }
+  getCuatrimestre(){
+      var month = this.date.getMonth();
+      if(month < 6){
+          return "C1";
+      } else {
+          return "C2";
+      }
+  }
 
 }
