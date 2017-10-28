@@ -1,10 +1,3 @@
-<mat-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason">
-    <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-        {{season}}
-    </mat-radio-button>
-</mat-radio-group>
-<div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
-
 <div>
     <td>
         <tr class="expansion" *ngFor="let materia of materias">
@@ -17,7 +10,12 @@
                     Opciones
                 </mat-panel-description> -->
               </mat-expansion-panel-header>
-              DSFFSD
+                  <mat-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason">
+                      <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                          {{season}}
+                      </mat-radio-button>
+                  </mat-radio-group>
+                  <div class="example-selected-value"><h2>Martin es: {{favoriteSeason}}</h2></div>
               <!-- <mat-form-field>
                 <input matInput placeholder="First name">
               </mat-form-field>

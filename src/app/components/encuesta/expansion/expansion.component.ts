@@ -27,10 +27,10 @@ export class ExpansionComponent implements OnInit {
     favoriteSeason: string;
 
     seasons = [
-      'Winter',
-      'Spring',
-      'Summer',
-      'Autumn',
+      'Prolijo',
+      'Curioso',
+      'Gloton',
+      'Homosexual',
     ];
 
     step = 0;
