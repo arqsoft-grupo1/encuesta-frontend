@@ -1,8 +1,16 @@
+import { Materia } from './materia'
+
 export class Oferta {
    constructor(
-      public id: string,
-      public materias: string,
-      public nombre: string,
-      public orden: string,
+      public materias: Materia[],
   ) {}
+
+  getMaterias() {
+      return this.materias;
+  }
 }
+
+
+// export interface Oferta {
+//   materias: Materia[]
+// }

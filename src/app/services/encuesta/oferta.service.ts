@@ -1,19 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Component, OnInit } from '@angular/core';
+// import { Http, Response } from '@angular/http';
+import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { Oferta } from '../../model/oferta'
+import { Materia } from '../../model/materia'
+
+interface ItemsResponse {
+  results: string[];
+}
 
 @Injectable()
 export class OfertaService {
-   constructor(private http: Http) {
-   }
+    prueba;
+    constructor(private http: HttpClient) {
 
-   getOferta(): Observable<Object[]> {
-      return this.http.get("http://localhost:8000/api/oferta")
-         .map((res: Response) => res.json())
-         .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
-   }
-   // getOferta() {
-   //      return this.http.get<Oferta>('http://localhost:8000/api/oferta');
-   //  }
+    }
+
+    ngOnInit() {
+
+    }
+
+    getOferta() {
+            return this.http.get<Oferta>('http://localhost:8000/api/oferta');
+        // .subscribe(
+        //    data => {
+        //         this.oferta = data['oferta'];
+        //         console.log("Oferta constructor:" +  this.oferta + (new Date()).getSeconds());
+        //         return this.oferta;
+        //    },
+        //    err => {
+        //      console.log("No se pudo traer la informacion de la oferta, intente nuevamente")
+        //    }
+        //  );
+    }
+
 }

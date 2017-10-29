@@ -4,6 +4,7 @@ import { Oferta } from "../../../model/oferta";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { MatRadioModule } from '@angular/material';
 // import { NgModule } from '@angular/core';
+import { Materia } from '../../../model/materia'
 
 @Component({
   selector: 'Expansion',
@@ -11,18 +12,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./expansion.component.css']
 })
 export class ExpansionComponent implements OnInit {
-
+    oferta;
+    materias;
     opciones = [
-                    {value: 'yacurse', viewValue: 'Ya curse'},
+                    {value: 'yacurse', viewValue: 'Ya la curse'},
                     {value: 'todaviano', viewValue: 'Todavia no'},
                     {value: 'Elanoproximo', viewValue: 'Proximamente'}
                 ];
-    materias = [
-                    {id: 1, nombre: 'Introduccion a la programacion', orden: "1"},
-                    {id: 2, nombre: 'Organizacion y Arquitectura', orden: "1"},
-                    {id: 3, nombre: 'Mate 1', orden: "1"},
-                    {id: 4, nombre: 'IBD', orden: "1"}
-                ];
+    // materias = [
+    //                 {id: 1, nombre: 'Introduccion a la programacion', orden: "1"},
+    //                 {id: 2, nombre: 'Organizacion y Arquitectura', orden: "1"},
+    //                 {id: 3, nombre: 'Matematica 1', orden: "1"},
+    //                 {id: 4, nombre: 'Introduccion a base de datos', orden: "1"}
+    //             ];
 
     favoriteSeason: string;
 
@@ -56,13 +58,21 @@ export class ExpansionComponent implements OnInit {
     }
 
   constructor(private ofertaService: OfertaService) {
-    //  this.oferta = this.ofertaService.getOferta();
-    //   console.log(this.oferta);
+      ofertaService.getOferta().subscribe(
+         data => {
+             console.log(data);
+             console.log(data['oferta']);
+             this.oferta = new Oferta(data['oferta']);
+             console.log("La oferta en si:" +  this.oferta.getMaterias());
+             this.materias = this.oferta.getMaterias();
+         },
+         err => {
+           console.log("No se pudo traer la informacion de la oferta, intente nuevamente")
+         }
+      );
+
   }
-
-  ngOnInit() {
-
-    //  console.log(this.oferta);
+  ngOnInit(): void {
 
   }
 

@@ -9,6 +9,7 @@ import { OfertaService } from './services/encuesta/oferta.service'
 import { MatInputModule } from '@angular/material';
 import { ExpansionComponent } from './components/encuesta/expansion/expansion.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { DatePipe } from '@angular/common';
 
@@ -21,7 +22,7 @@ import { DatePipe } from '@angular/common';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
     MatInputModule,
