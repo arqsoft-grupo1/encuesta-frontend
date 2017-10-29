@@ -38,6 +38,17 @@
     </mat-radio-group>
     <div class="example-selected-value"><h2>Martin es: {{favoriteSeason}}</h2></div>
 
+    <form>
+      <mat-select placeholder="Favorite food" [(ngModel)]="selectedValue" name="food">
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+
+      <p> Selected value: {{selectedValue}} </p>
+    </form>
+
+
     <mat-action-row>
       <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
     </mat-action-row>

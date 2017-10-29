@@ -13,4 +13,7 @@ export class OfertaService {
          .map((res: Response) => res.json())
          .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
    }
+   // getOferta() {
+   //      return this.http.get<Oferta>('http://localhost:8000/api/oferta');
+   //  }
 }
