@@ -30,15 +30,15 @@ export class EncuestaComponent {
 
     constructor(private ofertaService: OfertaService) { }
 
-    ngOnInit() {
-    //this.dataSource = new ExampleDataSource(data, this.paginator);
-        this.ofertaService.getOferta().subscribe(
-            oferta => {
-                // console.log(oferta['oferta']);
-                this.dataSource = new ExampleDataSource(oferta['oferta'], this.paginator);
-            }
-        );
-    }
+    // ngOnInit() {
+    // //this.dataSource = new ExampleDataSource(data, this.paginator);
+    //     this.ofertaService.getOferta().subscribe(
+    //         oferta => {
+    //             // console.log(oferta['oferta']);
+    //             this.dataSource = new ExampleDataSource(oferta['oferta'], this.paginator);
+    //         }
+    //     );
+    // }
 
 }
 
