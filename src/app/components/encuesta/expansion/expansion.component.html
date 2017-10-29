@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <td>
         <tr class="expansion" *ngFor="let materia of materias">
             <mat-expansion-panel>
@@ -6,9 +6,6 @@
                 <mat-panel-title>
                   {{materia.nombre}}
                 </mat-panel-title>
-                <!-- <mat-panel-description>
-                    Opciones
-                </mat-panel-description> -->
               </mat-expansion-panel-header>
                   <mat-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason">
                       <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
@@ -16,50 +13,42 @@
                       </mat-radio-button>
                   </mat-radio-group>
                   <div class="example-selected-value"><h2>Martin es: {{favoriteSeason}}</h2></div>
-              <!-- <mat-form-field>
-                <input matInput placeholder="First name">
-              </mat-form-field>
-
-              <mat-form-field>
-                <input matInput placeholder="Age">
-              </mat-form-field> -->
             </mat-expansion-panel>
         </tr>
     </td>
-</div>
-<!--
-<div>
-  <td>
-  <tr class="trpacientes" *ngFor="let paciente of pacientes">{{paciente.nombre}}   {{paciente.apellido}}
-    <md-expansion-panel>
-        <md-expansion-panel-header>
-            <md-panel-title>
-              Seguimiento
-            </md-panel-title>
-            <md-panel-description>
-              Datos personales
-            </md-panel-description>
-        </md-expansion-panel-header>
-        <md-form-field>
-            <md-hint align="start"><strong>Nombre</strong> </md-hint>
-            <input mdInput placeholder={{paciente.nombre}}>
-        </md-form-field>
-        <md-form-field>
-            <md-hint align="start"><strong>Edad</strong> </md-hint>
-            <input mdInput placeholder={{paciente.edad}}>
-        </md-form-field>
-        <md-form-field>
-            <md-hint align="start"><strong>Peso</strong> </md-hint>
-            <input mdInput placeholder={{paciente.peso}}>
-        </md-form-field>
-        <md-form-field>
-            <md-hint align="start"><strong>Estatura</strong> </md-hint>
-            <input mdInput placeholder={{paciente.estatura}}>
-        </md-form-field>
-        <md-card>
-            <registropaciente></registropaciente>
-        </md-card>
-    </md-expansion-panel>
-  </tr>
-</td>
 </div> -->
+
+
+<mat-accordion class="expansion" *ngFor="let materia of materias; let i = index" [attr.data-index]="i">
+  <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{materia.nombre}}
+      </mat-panel-title>
+      <mat-panel-description>
+        Elija una de las opciones
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+
+    <mat-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason">
+        <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+            {{season}}
+        </mat-radio-button>
+    </mat-radio-group>
+    <div class="example-selected-value"><h2>Martin es: {{favoriteSeason}}</h2></div>
+
+    <mat-action-row>
+      <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+
+
+    <!-- <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">End</button>
+    </mat-action-row>
+  </mat-expansion-panel> -->
+
+</mat-accordion>
