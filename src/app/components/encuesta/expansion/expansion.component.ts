@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { OfertaService } from "../../../services/encuesta/oferta.service";
 import { Oferta } from "../../../model/oferta";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { MatRadioModule } from '@angular/material';
 // import { NgModule } from '@angular/core';
 import { Materia } from '../../../model/materia'
@@ -29,6 +27,14 @@ export class ExpansionComponent implements OnInit {
       'Curioso',
       'Gloton',
       'Homosexual',
+    ];
+
+    selectedValue: string;
+
+    foods = [
+      {value: 'steak-0', viewValue: 'Steak'},
+      {value: 'pizza-1', viewValue: 'Pizza'},
+      {value: 'tacos-2', viewValue: 'Tacos'}
     ];
 
     step = 0;
