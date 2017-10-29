@@ -18,16 +18,10 @@ export class ExpansionComponent implements OnInit {
     materias;
     opciones = [
                     {value: 'yacurse', viewValue: 'Ya la curse'},
-                    {value: 'todaviano', viewValue: 'Todavia no'},
-                    {value: 'Elanoproximo', viewValue: 'Proximamente'}
+                    {value: 'nopuedoporhorarios', viewValue: 'No puedo cursar por los horarios'},
                 ];
-    // materias = [
-    //                 {id: 1, nombre: 'Introduccion a la programacion', orden: "1"},
-    //                 {id: 2, nombre: 'Organizacion y Arquitectura', orden: "1"},
-    //                 {id: 3, nombre: 'Matematica 1', orden: "1"},
-    //                 {id: 4, nombre: 'Introduccion a base de datos', orden: "1"}
-    //             ];
-
+    comisiones;
+    
     favoriteSeason: string;
 
     seasons = [
