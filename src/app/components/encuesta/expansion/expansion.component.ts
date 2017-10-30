@@ -16,6 +16,7 @@ import { Materia } from '../../../model/materia'
 export class ExpansionComponent implements OnInit {
     oferta;
     materias;
+    materias_respuesta: [string, string];
 
     respuesta: string;
 
@@ -65,7 +66,8 @@ export class ExpansionComponent implements OnInit {
 
     }
 
-    respuestaVoyACursar() {
+    respuestaVoyACursar(materia) {
+        console.log(materia);
         console.log(this.respuesta);
         return this.respuesta == 'voyacursar';
     }
