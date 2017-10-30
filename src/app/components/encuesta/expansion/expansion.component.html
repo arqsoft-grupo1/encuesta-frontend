@@ -1,25 +1,30 @@
-<table style="width:50%">
+<!-- <table style="width:100%"> -->
     <mat-accordion class="expansion" *ngFor="let materia of materias; let i = index" [attr.data-index]="i">
       <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle="true">
         <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{materia.nombre}}
-          </mat-panel-title>
-          <mat-panel-description>
-            Elija una de las opciones
-          </mat-panel-description>
+          <table style="width:100%">
+              <td style="width:80%">
+                  <mat-panel-title>
+                    {{materia.nombre}}
+                  </mat-panel-title>
+              </td>
+              <td style="width:20%">
+                  <mat-panel-description>
+                    Elija una de las opciones
+                  </mat-panel-description>
+              </td>
+          </table>
         </mat-expansion-panel-header>
 
 
         <mat-radio-group class="example-radio-group" [(ngModel)]="respuesta">
-            <mat-radio-button class="example-radio-button" *ngFor="let opcion of opciones" [value]="opcion">
+            <mat-radio-button class="example-radio-button" *ngFor="let opcion of opciones" name={{materia.nombre}} [value]="opcion">
                 {{opcion.viewValue}}
             </mat-radio-button>
         </mat-radio-group>
-        <!-- <div class="example-selected-value"><h2>Respuesta: {{respuesta.viewValue}}</h2></div> -->
         <hr>
             <mat-form-field>
-                <mat-select [placeholder]="placeholderSelect" [(ngModel)]="comisionElegida" name="comision" disabled>
+                <mat-select [placeholder]="placeholderSelect" [(ngModel)]="comisionElegida" name="comision" disabled="false">
                     <mat-option *ngFor="let comision of comisiones" [value]="comision.value">
                         {{comision.viewValue}}
                     </mat-option>
@@ -42,4 +47,4 @@
       </mat-expansion-panel> -->
 
     </mat-accordion>
-</table>
+<!-- </table> -->

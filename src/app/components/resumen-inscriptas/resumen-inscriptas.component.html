@@ -10,11 +10,18 @@
             </mat-toolbar-row>
         </tr>
     </mat-toolbar> -->
-<mat-toolbar color="primary">
-  <span>Resumen</span>
+<mat-toolbar>
+  <span class="titulo_toolbar" color="primary">Resumen</span>
 
-            <mat-toolbar-row *ngFor="let materia of seleccion_materias">
-                <span matTooltip={{materia.comision}}{{materia.horario}} > {{materia.nombre}}</span>
+            <mat-toolbar-row color="primary" *ngFor="let materia of seleccion_materias">
+                <span matTooltip={{materia.comision}}{{materia.horario}} >
+                    {{materia.nombre}}
+                </span>
+                <!-- {{materia.nombre}}
+                <br>
+                {{materia.comision}}
+                <br>
+                {{materia.horario}} -->
         </mat-toolbar-row>
 </mat-toolbar>
 

@@ -1,12 +1,17 @@
-/*mat-card-title {
-    width: 100%;
-    background-color: #3f51b5;
-}*/
-/*
-mat-toolbar-row {
+.titulo_toolbar {
+    color: #3f51b5;
+    font-weight: bold;
+}
+
+
+/*mat-toolbar-row {
     color:  rgba(0,0,0,.87);
     background-color: rgba(255,255,255,.87);
 }*/
+
+mat-toolbar {
+    background: rgba(255,255,255);
+}
 
 tr.resumen {
     color: rgba(255,255,255,.87);
@@ -18,5 +23,6 @@ tr.resumen {
 }
 
 .example-spacer {
-  flex: 1 1 auto;
+  /*flex: 1 1 auto;*/
+   flex-basis: 0;
 }
