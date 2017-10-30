@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef,ViewChild, OnInit } from '@angular/core';
 import { OfertaService } from "../../../services/encuesta/oferta.service";
 import { Oferta } from "../../../model/oferta";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,6 +11,8 @@ import { Materia } from '../../../model/materia'
   templateUrl: './expansion.component.html',
   styleUrls: ['./expansion.component.css']
 })
+
+
 export class ExpansionComponent implements OnInit {
     oferta;
     materias;
@@ -57,8 +59,15 @@ export class ExpansionComponent implements OnInit {
       );
 
   }
-  ngOnInit(): void {
 
-  }
+
+    ngOnInit(): void {
+
+    }
+
+    respuestaVoyACursar() {
+        console.log(this.respuesta);
+        return this.respuesta == 'voyacursar';
+    }
 
 }
