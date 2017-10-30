@@ -18,7 +18,7 @@ export class ExpansionComponent implements OnInit {
     materias;
     materias_respuesta: [string, string];
 
-    respuesta: string;
+    respuesta: string[] = [];
 
     opciones = [
         {value: 'yaaprobe', viewValue: 'Ya aprobé'},
@@ -66,10 +66,9 @@ export class ExpansionComponent implements OnInit {
 
     }
 
-    respuestaVoyACursar(materia) {
-        console.log(materia);
+    respuestaVoyACursar(i) {
         console.log(this.respuesta);
-        return this.respuesta == 'voyacursar';
+        return this.respuesta[i] == 'voyacursar';
     }
 
 }
