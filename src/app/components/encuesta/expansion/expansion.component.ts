@@ -14,12 +14,6 @@ import { Materia } from '../../../model/materia'
 export class ExpansionComponent implements OnInit {
     oferta;
     materias;
-    // materias = [
-    //                 {id: 1, nombre: 'Introduccion a la programacion', orden: "1"},
-    //                 {id: 2, nombre: 'Organizacion y Arquitectura', orden: "1"},
-    //                 {id: 3, nombre: 'Matematica 1', orden: "1"},
-    //                 {id: 4, nombre: 'Introduccion a base de datos', orden: "1"}
-    //             ];
 
     respuesta: string;
 
@@ -31,12 +25,6 @@ export class ExpansionComponent implements OnInit {
     ];
 
     comisionElegida: string;
-
-    comisiones = [
-      {value: 'comision1', viewValue: 'C1'},
-      {value: 'comision2', viewValue: 'C2'},
-      {value: 'comision3', viewValue: 'C3'}
-    ];
 
     step = 0;
 
