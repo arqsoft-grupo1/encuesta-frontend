@@ -19,7 +19,7 @@ export class ExpansionComponent implements OnInit {
                     {value: 'nopuedoporhorarios', viewValue: 'No puedo cursar por los horarios'},
                 ];
     comisiones;
-    
+
     favoriteSeason: string;
 
     seasons = [

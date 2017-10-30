@@ -1,0 +1,28 @@
+<!--
+    <mat-toolbar color="primary">
+      <span>Resumen</span>
+      <tr *ngFor="let materia of seleccion_materias">
+                <mat-toolbar-row>
+                    {{materia.nombre}}
+                    {{materia.comision}}
+                    {{materia.horario}}
+                <span class="example-spacer"></span>
+            </mat-toolbar-row>
+        </tr>
+    </mat-toolbar> -->
+<mat-toolbar color="primary">
+  <span>Resumen</span>
+
+            <mat-toolbar-row *ngFor="let materia of seleccion_materias">
+                <span matTooltip={{materia.comision}}{{materia.horario}} > {{materia.nombre}}</span>
+        </mat-toolbar-row>
+</mat-toolbar>
+
+<!-- <table style="width:100%">
+    <tr class="resumen" width="100%">
+        <mat-card-title>Resumen</mat-card-title>
+    </tr>
+    <tr *ngFor="let materia of seleccion_materias">
+        <mat-card-content>{{materia.nombre}}</mat-card-content>
+    </tr>
+</table> -->

@@ -12,13 +12,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { DatePipe } from '@angular/common';
+import { ResumenInscriptasComponent } from './components/resumen-inscriptas/resumen-inscriptas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EncuestaComponent,
     ExpansionComponent,
-    HeaderComponent
+    HeaderComponent,
+    ResumenInscriptasComponent
   ],
   imports: [
     BrowserModule,
@@ -31,4 +33,6 @@ import { DatePipe } from '@angular/common';
   providers: [OfertaService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+    
+}
