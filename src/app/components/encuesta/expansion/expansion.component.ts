@@ -14,30 +14,33 @@ import { Materia } from '../../../model/materia'
 export class ExpansionComponent implements OnInit {
     oferta;
     materias;
+    // materias = [
+    //                 {id: 1, nombre: 'Introduccion a la programacion', orden: "1"},
+    //                 {id: 2, nombre: 'Organizacion y Arquitectura', orden: "1"},
+    //                 {id: 3, nombre: 'Matematica 1', orden: "1"},
+    //                 {id: 4, nombre: 'Introduccion a base de datos', orden: "1"}
+    //             ];
+
+    respuesta: string;
+
     opciones = [
-                    {value: 'yacurse', viewValue: 'Ya la curse'},
-                    {value: 'nopuedoporhorarios', viewValue: 'No puedo cursar por los horarios'},
-                ];
-    comisiones;
-
-    favoriteSeason: string;
-
-    seasons = [
-      'Prolijo',
-      'Curioso',
-      'Gloton',
-      'Homosexual',
+        {value: 'yaaprobe', viewValue: 'Ya aprobé'},
+        {value: 'todaviano', viewValue: 'Todavia no'},
+        {value: 'nopuedohorario', viewValue: 'La cursaría pero no puedo por el horario'},
+        {value: 'voyacursar', viewValue: 'Voy a cursar'}
     ];
 
-    selectedValue: string;
+    comisionElegida: string;
 
-    foods = [
-      {value: 'steak-0', viewValue: 'Steak'},
-      {value: 'pizza-1', viewValue: 'Pizza'},
-      {value: 'tacos-2', viewValue: 'Tacos'}
+    comisiones = [
+      {value: 'comision1', viewValue: 'C1'},
+      {value: 'comision2', viewValue: 'C2'},
+      {value: 'comision3', viewValue: 'C3'}
     ];
 
     step = 0;
+
+    placeholderSelect = 'Seleccionar';
 
     setStep(index: number) {
       this.step = index;

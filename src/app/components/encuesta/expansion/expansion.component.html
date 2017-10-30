@@ -1,65 +1,45 @@
-<!-- <div>
-    <td>
-        <tr class="expansion" *ngFor="let materia of materias">
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  {{materia.nombre}}
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-                  <mat-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason">
-                      <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-                          {{season}}
-                      </mat-radio-button>
-                  </mat-radio-group>
-                  <div class="example-selected-value"><h2>Martin es: {{favoriteSeason}}</h2></div>
-            </mat-expansion-panel>
-        </tr>
-    </td>
-</div> -->
+<table style="width:50%">
+    <mat-accordion class="expansion" *ngFor="let materia of materias; let i = index" [attr.data-index]="i">
+      <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{materia.nombre}}
+          </mat-panel-title>
+          <mat-panel-description>
+            Elija una de las opciones
+          </mat-panel-description>
+        </mat-expansion-panel-header>
 
 
-<mat-accordion class="expansion" *ngFor="let materia of materias; let i = index" [attr.data-index]="i">
-  <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle="true">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{materia.nombre}}
-      </mat-panel-title>
-      <mat-panel-description>
-        Elija una de las opciones
-      </mat-panel-description>
-    </mat-expansion-panel-header>
+        <mat-radio-group class="example-radio-group" [(ngModel)]="respuesta">
+            <mat-radio-button class="example-radio-button" *ngFor="let opcion of opciones" [value]="opcion">
+                {{opcion.viewValue}}
+            </mat-radio-button>
+        </mat-radio-group>
+        <!-- <div class="example-selected-value"><h2>Respuesta: {{respuesta.viewValue}}</h2></div> -->
+        <hr>
+            <mat-form-field>
+                <mat-select [placeholder]="placeholderSelect" [(ngModel)]="comisionElegida" name="comision" disabled>
+                    <mat-option *ngFor="let comision of comisiones" [value]="comision.value">
+                        {{comision.viewValue}}
+                    </mat-option>
+                </mat-select>
 
+                <!-- <p> Selected value: {{selectedValue}} </p> -->
+            </mat-form-field>
 
-    <mat-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason">
-        <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-            {{season}}
-        </mat-radio-button>
-    </mat-radio-group>
-    <div class="example-selected-value"><h2>Martin es: {{favoriteSeason}}</h2></div>
-
-    <form>
-      <mat-select placeholder="Favorite food" [(ngModel)]="selectedValue" name="food">
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
-        </mat-option>
-      </mat-select>
-
-      <p> Selected value: {{selectedValue}} </p>
-    </form>
-
-
-    <mat-action-row>
-      <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
-    </mat-action-row>
-  </mat-expansion-panel>
+        <mat-action-row>
+          <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
+        </mat-action-row>
+      </mat-expansion-panel>
 
 
 
-    <!-- <mat-action-row>
-      <button mat-button color="warn" (click)="prevStep()">Previous</button>
-      <button mat-button color="primary" (click)="nextStep()">End</button>
-    </mat-action-row>
-  </mat-expansion-panel> -->
+        <!-- <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Previous</button>
+          <button mat-button color="primary" (click)="nextStep()">End</button>
+        </mat-action-row>
+      </mat-expansion-panel> -->
 
-</mat-accordion>
+    </mat-accordion>
+</table>
