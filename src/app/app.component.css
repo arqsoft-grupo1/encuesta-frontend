@@ -8,9 +8,12 @@
 }
 
 .divResumen {
-	position:fixed;
-	right:20%;
-	top:22%;
+	position: fixed;
+	right: 7%;
+	top: 22%;
+	border-color: rgba(255,252,252,.87);
+	border-style: outset;
+	width: 25%;
 }
 
 .header {
