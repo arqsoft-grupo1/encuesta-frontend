@@ -27,7 +27,7 @@ export class ExpansionComponent implements OnInit {
         {value: 'voyacursar', viewValue: 'Voy a cursar'}
     ];
 
-    comisionElegida: string[];
+    comisionElegida: string[] = [];
 
     step = 0;
 
@@ -69,6 +69,10 @@ export class ExpansionComponent implements OnInit {
     respuestaVoyACursar(i) {
         // console.log(this.respuesta);
         return this.respuesta[i] == 'voyacursar';
+    }
+
+    getEstadoRespuesta(i) {
+        return 'aliceblue';
     }
 
 }
