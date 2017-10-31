@@ -27,7 +27,7 @@ export class ExpansionComponent implements OnInit {
         {value: 'voyacursar', viewValue: 'Voy a cursar'}
     ];
 
-    comisionElegida: string;
+    comisionElegida: string[];
 
     step = 0;
 

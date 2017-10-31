@@ -3,12 +3,8 @@
 	width: 60%;
 }
 
-.divEncuesta {
-	top: -30%;
-}
-
 .divResumen {
-	position: fixed;
+	position: absolute;
 	right: 7%;
 	top: 22%;
 	border-color: rgba(255,252,252,.87);
@@ -18,5 +14,5 @@
 
 .header {
 	width: 100%;
-	position: fixed;
+	/*position: fixed;*/
 }
