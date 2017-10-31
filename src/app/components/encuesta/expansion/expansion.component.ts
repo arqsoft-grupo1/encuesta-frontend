@@ -71,8 +71,13 @@ export class ExpansionComponent implements OnInit {
         return this.respuesta[i] == 'voyacursar';
     }
 
-    getEstadoRespuesta(i) {
-        return 'aliceblue';
+    getEstado(i) {
+        console.log(this.respuesta[i]);
+        if (this.respuesta[i] === undefined){
+            return 'respuesta_incompleta';
+        } else {
+            return 'respuesta_ok';
+        }
     }
 
 }

@@ -20,3 +20,11 @@
   justify-content: space-between;
   align-items: center;
 }
+
+#respuesta_incompleta {
+    background-color: #EAF7FB;
+}
+
+#respuesta_ok {
+    background-color: #F9FFFB;
+}

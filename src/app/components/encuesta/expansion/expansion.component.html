@@ -1,7 +1,7 @@
 <!-- <table style="width:100%"> -->
     <mat-accordion class="expansion" *ngFor="let materia of materias; let i = index" [attr.data-index]="i">
-      <mat-expansion-panel style="background-color: '{{getEstadoRespuesta(i)}}'" [expanded]="step === i" (opened)="setStep(i)" hideToggle="true">
-        <mat-expansion-panel-header>
+      <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle="true">
+        <mat-expansion-panel-header id='{{getEstado(i)}}'>
           <table style="width:100%">
               <td style="width:80%">
                   <mat-panel-title>
