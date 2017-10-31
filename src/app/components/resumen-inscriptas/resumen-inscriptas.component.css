@@ -1,6 +1,8 @@
-.titulo_toolbar {
-    color: #3f51b5;
+.titulo {
+    color: rgba(255,255,255,.87);
     font-weight: bold;
+    font-size: x-large;
+    background-color: #3f51b5;
 }
 
 

@@ -3,11 +3,17 @@
 	width: 60%;
 }
 
-div.divResumen {
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 0;
-    float: right;
-    /*background-color: green;*/
-    border: 2px solid black;
+.divEncuesta {
+	top: -30%;
+}
+
+.divResumen {
+	position:fixed;
+	right:20%;
+	top:22%;
+}
+
+.header {
+	width: 100%;
+	position: fixed;
 }
