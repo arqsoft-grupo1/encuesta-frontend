@@ -48,10 +48,10 @@ export class ExpansionComponent implements OnInit {
   constructor(private ofertaService: OfertaService) {
       ofertaService.getOferta().subscribe(
          data => {
-             console.log(data);
-             console.log(data['oferta']);
+            //  console.log(data);
+            //  console.log(data['oferta']);
              this.oferta = new Oferta(data['oferta']);
-             console.log("La oferta en si:" +  this.oferta.getMaterias());
+            //  console.log("La oferta en si:" +  this.oferta.getMaterias());
              this.materias = this.oferta.getMaterias();
          },
          err => {
@@ -67,7 +67,7 @@ export class ExpansionComponent implements OnInit {
     }
 
     respuestaVoyACursar(i) {
-        console.log(this.respuesta);
+        // console.log(this.respuesta);
         return this.respuesta[i] == 'voyacursar';
     }
 

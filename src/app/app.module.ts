@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { DatePipe } from '@angular/common';
 import { ResumenInscriptasComponent } from './components/resumen-inscriptas/resumen-inscriptas.component';
+import { MatListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -28,11 +29,12 @@ import { ResumenInscriptasComponent } from './components/resumen-inscriptas/resu
     BrowserAnimationsModule,
     MaterialModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatListModule
   ],
   providers: [OfertaService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-    
+
 }

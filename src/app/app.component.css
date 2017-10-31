@@ -1,0 +1,13 @@
+.divExpansion{
+	display: table;
+	width: 60%;
+}
+
+div.divResumen {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    float: right;
+    /*background-color: green;*/
+    border: 2px solid black;
+}

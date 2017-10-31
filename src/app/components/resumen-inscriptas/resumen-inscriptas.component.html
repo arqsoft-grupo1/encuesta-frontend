@@ -10,20 +10,38 @@
             </mat-toolbar-row>
         </tr>
     </mat-toolbar> -->
-<mat-toolbar>
+
+
+
+
+<!-- <mat-toolbar>
   <span class="titulo_toolbar" color="primary">Resumen</span>
 
             <mat-toolbar-row color="primary" *ngFor="let materia of seleccion_materias">
                 <span matTooltip={{materia.comision}}{{materia.horario}} >
                     {{materia.nombre}}
-                </span>
+                </span> -->
+<!-- -------------------esto no estaba----------------                 -->
                 <!-- {{materia.nombre}}
                 <br>
                 {{materia.comision}}
                 <br>
                 {{materia.horario}} -->
+<!-- --------------------------------------- -->
+                <!--
         </mat-toolbar-row>
-</mat-toolbar>
+</mat-toolbar> -->
+
+
+
+<mat-list>
+    <h2 matSubheader>Materias a cursar</h2>
+    <mat-list-item *ngFor="let materia of seleccion_materias">
+        <span matTooltip={{materia.comision}}{{materia.horario}} >
+            {{materia.nombre}}
+        </span>
+    </mat-list-item>
+</mat-list>
 
 <!-- <table style="width:100%">
     <tr class="resumen" width="100%">
