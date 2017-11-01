@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { MatRadioModule } from '@angular/material';
 // import { NgModule } from '@angular/core';
 import { Materia } from '../../../model/materia'
+import {MatIconRegistry} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'Expansion',
@@ -45,7 +47,11 @@ export class ExpansionComponent implements OnInit {
       this.step--;
     }
 
-  constructor(private ofertaService: OfertaService) {
+  constructor(private ofertaService: OfertaService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+      iconRegistry.addSvgIcon(
+       'thumbs-up',
+       sanitizer.bypassSecurityTrustResourceUrl('/home/martin/Escritorio/ic_navigation_black_18px.svg'));
+
       ofertaService.getOferta().subscribe(
          data => {
             //  console.log(data);
@@ -74,9 +80,9 @@ export class ExpansionComponent implements OnInit {
     getEstado(i) {
         console.log(this.respuesta[i]);
         if (this.respuesta[i] === undefined){
-            return 'respuesta_incompleta';
+            return 'description';
         } else {
-            return 'respuesta_ok';
+            return 'done';
         }
     }
 

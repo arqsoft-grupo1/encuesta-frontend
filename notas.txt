@@ -1,0 +1,6 @@
+- Buscar la forma de que hayan menos clicks al completar la encuesta
+    - inhabilitar materias aprobadas
+    - inhabilitar las que se superponen los horarios
+    - Poner materias sugeridas antes.
+
+    
