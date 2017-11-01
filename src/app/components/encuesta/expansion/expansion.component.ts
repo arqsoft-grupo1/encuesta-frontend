@@ -62,7 +62,7 @@ export class ExpansionComponent implements OnInit {
     }
 
     getEstado(i) {
-        //console.log(this.respuesta[i]);
+        //console.log(this.materias[i]);
         switch(this.respuesta[i]) {
            case 'yaaprobe': {
               return 'done';
