@@ -32,17 +32,6 @@
         </mat-toolbar-row>
 </mat-toolbar> -->
 
-
-
-<mat-list>
-    <h2 matSubheader class="titulo">Materias a cursar</h2>
-    <mat-list-item *ngFor="let materia of seleccion_materias">
-        <span matTooltip={{materia.comision}}{{materia.horario}} >
-            {{materia.nombre}}
-        </span>
-    </mat-list-item>
-</mat-list>
-
 <!-- <table style="width:100%">
     <tr class="resumen" width="100%">
         <mat-card-title>Resumen</mat-card-title>
@@ -51,3 +40,20 @@
         <mat-card-content>{{materia.nombre}}</mat-card-content>
     </tr>
 </table> -->
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<mat-list>
+    <h2 matSubheader class="titulo">Materias a cursar</h2>
+    <mat-list-item *ngFor="let materia of seleccion_materias">
+        <span matTooltip={{materia.comision}}{{materia.horario}} >
+            <button mat-icon-button (click)="borrarMateriaResumen(materia)">
+                <md-icon class="material-icons">delete</md-icon>
+            </button>
+            {{materia.nombre}}
+        </span>
+    </mat-list-item>
+    <hr>
+    <button mat-button (click)="openSnackBar()">Aceptar</button>
+</mat-list>
