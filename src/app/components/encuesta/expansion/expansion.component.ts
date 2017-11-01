@@ -1,4 +1,4 @@
-import { Component, ElementRef,ViewChild, OnInit } from '@angular/core';
+import { Component, ElementRef,ViewChild, OnInit, Input } from '@angular/core';
 import { OfertaService } from "../../../services/encuesta/oferta.service";
 import { Oferta } from "../../../model/oferta";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,8 +16,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 
 
 export class ExpansionComponent implements OnInit {
-    oferta;
-    materias;
+    @Input() materias;
+    @Input() materias_a_mostrar;
     materias_respuesta: [string, string];
 
     respuesta: string[] = [];
@@ -47,23 +47,7 @@ export class ExpansionComponent implements OnInit {
       this.step--;
     }
 
-  constructor(private ofertaService: OfertaService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-      iconRegistry.addSvgIcon(
-       'thumbs-up',
-       sanitizer.bypassSecurityTrustResourceUrl('/home/martin/Escritorio/ic_navigation_black_18px.svg'));
-
-      ofertaService.getOferta().subscribe(
-         data => {
-            //  console.log(data);
-            //  console.log(data['oferta']);
-             this.oferta = new Oferta(data['oferta']);
-            //  console.log("La oferta en si:" +  this.oferta.getMaterias());
-             this.materias = this.oferta.getMaterias();
-         },
-         err => {
-           console.log("No se pudo traer la informacion de la oferta, intente nuevamente")
-         }
-      );
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
 
   }
 
@@ -78,7 +62,7 @@ export class ExpansionComponent implements OnInit {
     }
 
     getEstado(i) {
-        console.log(this.respuesta[i]);
+        //console.log(this.respuesta[i]);
         switch(this.respuesta[i]) {
            case 'yaaprobe': {
               return 'done';
