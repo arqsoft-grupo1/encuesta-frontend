@@ -79,11 +79,32 @@ export class ExpansionComponent implements OnInit {
 
     getEstado(i) {
         console.log(this.respuesta[i]);
-        if (this.respuesta[i] === undefined){
-            return 'description';
-        } else {
-            return 'done';
+        switch(this.respuesta[i]) {
+           case 'yaaprobe': {
+              return 'done';
+           }
+           case 'todaviano': {
+              return 'error';
+           }
+           case 'nopuedohorario': {
+              return 'schedule';
+           }
+           case 'voyacursar': {
+               if (this.comisionElegida[i] === undefined) {
+                   return 'warning';
+               } else {
+                   return 'mood';
+               }
+           }
+           default: {
+              return 'description';
+           }
         }
+        // if (this.respuesta[i] === undefined){
+        //     return 'description';
+        // } else {
+        //     return 'done';
+        // }
     }
 
 }
