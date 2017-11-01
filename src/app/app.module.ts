@@ -14,6 +14,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { DatePipe } from '@angular/common';
 import { ResumenInscriptasComponent } from './components/resumen-inscriptas/resumen-inscriptas.component';
 import { MatListModule } from '@angular/material';
+import { ListaOfertaComponent } from './components/encuesta/lista-oferta/lista-oferta.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MatListModule } from '@angular/material';
     EncuestaComponent,
     ExpansionComponent,
     HeaderComponent,
-    ResumenInscriptasComponent
+    ResumenInscriptasComponent,
+    ListaOfertaComponent
   ],
   imports: [
     BrowserModule,

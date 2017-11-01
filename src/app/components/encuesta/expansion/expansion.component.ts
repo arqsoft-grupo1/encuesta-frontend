@@ -100,11 +100,6 @@ export class ExpansionComponent implements OnInit {
               return 'description';
            }
         }
-        // if (this.respuesta[i] === undefined){
-        //     return 'description';
-        // } else {
-        //     return 'done';
-        // }
     }
 
 }
