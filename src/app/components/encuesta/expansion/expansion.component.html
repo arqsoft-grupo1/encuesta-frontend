@@ -1,7 +1,4 @@
 <!-- <table style="width:100%"> -->
-<div *ngIf=(loading) class="center-div">
-  <mat-spinner></mat-spinner>
-</div>
     <mat-accordion class="expansion" *ngFor="let materia of materias; let i = index" [attr.data-index]="i">
       <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle="true">
         <mat-expansion-panel-header id='{{getEstado(i)}}'>

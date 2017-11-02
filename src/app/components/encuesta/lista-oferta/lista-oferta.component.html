@@ -1,26 +1,30 @@
+<div *ngIf=(loading) class="center-div">
+  <mat-spinner></mat-spinner>
+</div>
 <mat-horizontal-stepper>
   <mat-step>
+      <ng-template matStepLabel>Materias aprobadas</ng-template>
+        <div>
+            <mat-card>
+                <Expansion [materias]="materias_aprobadas"></Expansion>
+            </mat-card>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+  </mat-step>
+  <mat-step>
+      <ng-template matStepLabel>Materias sugeridas</ng-template>
     <div>
         <mat-card>
-            <Expansion></Expansion>
+            <Expansion [materias]="materias_sugeridas"></Expansion>
         </mat-card>
-
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
     </div>
   </mat-step>
   <mat-step>
     <mat-card>
-        <Expansion></Expansion>
-    </mat-card>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </div>
-  </mat-step>
-  <mat-step>
-    <mat-card>
-        <Expansion></Expansion>
+        <Expansion [materias]="materias"></Expansion>
     </mat-card>
     <div>
         <div>
