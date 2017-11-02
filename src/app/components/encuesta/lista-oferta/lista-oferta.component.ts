@@ -66,15 +66,11 @@ export class ListaOfertaComponent implements OnInit {
     */
     agregarMateriasSugeridas(materias) {
         for(var i = 0; i<materias.length; i++) {
-            //materias = materias.reverse();
-            // console.log(materias[i]['nombre']);
-            // if (!(this.existeMateriaSugeridaYa(materias[i]['id'])) && !(this.tieneMateriaAprobada(materias[i]['id']))) {
             if (!(this.existeMateriaSugeridaYa(materias[i]['id']))) {
                 this.materias_sugeridas.push(materias[i]);
                 // Quito la materia de la lista de materias generales para que no este duplicada
                 this.eliminarMateriaDeMateriasGenerales(materias[i]['id']);
             }
-            //this.materias_sugeridas = this.materias_sugeridas.reverse();
         }
     }
 
