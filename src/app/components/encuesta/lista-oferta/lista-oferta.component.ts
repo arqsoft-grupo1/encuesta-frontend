@@ -15,7 +15,7 @@ export class ListaOfertaComponent implements OnInit {
     materias;
     materias_sugeridas = [];
     materias_aprobadas;
-    tmp_mat = [];
+    loading = true;
 
     /*
         Genera 3 variables a mostrar en distintos paneles.
@@ -30,14 +30,11 @@ export class ListaOfertaComponent implements OnInit {
             data => {
                   this.oferta = new Oferta(data['oferta']);
                   this.materias = this.oferta.getMaterias();
-                  for(var i = 0; i < this.materias.length; i++) {
-                      console.log(this.materias[i]['nombre']);
-                      // console.log(tmp_sugeridas);
-                  }
                   this.materias_aprobadas = this.materias.filter(x => x['aprobada']);
                 //   this.materias = this.materias.sort((x, y) => x['orden'] > y['orden']);
                   this.materias = this.materias.filter(x => !x['aprobada']);
                   this.generarMateriasSugeridas();
+                  this.loading = false;
             },
             err => {
                 console.log("No se pudo traer la informacion de la oferta, intente nuevamente")

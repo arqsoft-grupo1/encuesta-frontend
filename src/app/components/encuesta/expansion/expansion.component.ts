@@ -45,6 +45,7 @@ export class ExpansionComponent implements OnInit {
       this.step--;
     }
 
+
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
 
   }
