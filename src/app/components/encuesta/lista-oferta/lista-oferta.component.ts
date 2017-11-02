@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OfertaService } from "../../../services/encuesta/oferta.service";
 import { Oferta } from "../../../model/oferta";
+import { MatStepLabel } from '@angular/material';
 
 
 @Component({
@@ -9,6 +10,7 @@ import { Oferta } from "../../../model/oferta";
   styleUrls: ['./lista-oferta.component.css']
 })
 export class ListaOfertaComponent implements OnInit {
+    matStepLabel;
     oferta;
     materias;
     materias_sugeridas = [];

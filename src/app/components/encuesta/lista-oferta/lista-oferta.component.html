@@ -1,5 +1,6 @@
 <mat-horizontal-stepper>
   <mat-step>
+      <ng-template matStepLabel>Materias aprobadas</ng-template>
     <div>
         <mat-card>
             <Expansion [materias]="materias_aprobadas"></Expansion>
@@ -9,6 +10,7 @@
     </div>
   </mat-step>
   <mat-step>
+      <ng-template matStepLabel>Materias sugeridas</ng-template>
     <div>
         <mat-card>
             <Expansion [materias]="materias_sugeridas"></Expansion>
