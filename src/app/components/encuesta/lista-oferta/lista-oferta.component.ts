@@ -30,8 +30,12 @@ export class ListaOfertaComponent implements OnInit {
             data => {
                   this.oferta = new Oferta(data['oferta']);
                   this.materias = this.oferta.getMaterias();
-                  this.materias = this.materias.sort((x, y) => x['orden'] > y['orden'])
+                  for(var i = 0; i < this.materias.length; i++) {
+                      console.log(this.materias[i]['nombre']);
+                      // console.log(tmp_sugeridas);
+                  }
                   this.materias_aprobadas = this.materias.filter(x => x['aprobada']);
+                //   this.materias = this.materias.sort((x, y) => x['orden'] > y['orden']);
                   this.materias = this.materias.filter(x => !x['aprobada']);
                   this.generarMateriasSugeridas();
             },
@@ -46,12 +50,13 @@ export class ListaOfertaComponent implements OnInit {
         a estas las agrega en la variable materias_sugeridas.
     */
     generarMateriasSugeridas() {
-        for(var i = 0; i<this.materias_aprobadas.length; i++) {
-            if (!(this.materias_aprobadas[i]['es_correlativa_de'] === undefined)) {
-                this.agregarMateriasSugeridas(this.materias_aprobadas[i]['es_correlativa_de']);
-            }
-
+        var tmp_sugeridas = [];
+        for(var i = 0; i<5; i++) {
+            // console.log(this.materias[i]['nombre']);
+            tmp_sugeridas.push(this.materias[i]);
+            // console.log(tmp_sugeridas);
         }
+        this.agregarMateriasSugeridas(tmp_sugeridas);
     }
     /*
         Si ya existe dentro de las materias sugeridas no la toma en cuenta
@@ -61,12 +66,15 @@ export class ListaOfertaComponent implements OnInit {
     */
     agregarMateriasSugeridas(materias) {
         for(var i = 0; i<materias.length; i++) {
-            if (!(this.existeMateriaSugeridaYa(materias[i]['id'])) && !(this.tieneMateriaAprobada(materias[i]['id']))) {
+            //materias = materias.reverse();
+            // console.log(materias[i]['nombre']);
+            // if (!(this.existeMateriaSugeridaYa(materias[i]['id'])) && !(this.tieneMateriaAprobada(materias[i]['id']))) {
+            if (!(this.existeMateriaSugeridaYa(materias[i]['id']))) {
                 this.materias_sugeridas.push(materias[i]);
                 // Quito la materia de la lista de materias generales para que no este duplicada
                 this.eliminarMateriaDeMateriasGenerales(materias[i]['id']);
-
             }
+            //this.materias_sugeridas = this.materias_sugeridas.reverse();
         }
     }
 

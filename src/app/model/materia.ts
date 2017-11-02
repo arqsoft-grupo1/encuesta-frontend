@@ -1,7 +1,7 @@
 export class Materia {
    constructor(
       public orden: string,
-      public nombre: string,
+      public nombre: number,
       public comisiones: string[],
       public aprobada: boolean
   ) {}
