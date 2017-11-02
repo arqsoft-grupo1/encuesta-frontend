@@ -52,9 +52,7 @@ export class ListaOfertaComponent implements OnInit {
     generarMateriasSugeridas() {
         var tmp_sugeridas = [];
         for(var i = 0; i<5; i++) {
-            // console.log(this.materias[i]['nombre']);
             tmp_sugeridas.push(this.materias[i]);
-            // console.log(tmp_sugeridas);
         }
         this.agregarMateriasSugeridas(tmp_sugeridas);
     }

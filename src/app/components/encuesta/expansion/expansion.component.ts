@@ -17,9 +17,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 
 export class ExpansionComponent implements OnInit {
     @Input() materias;
-    @Input() materias_a_mostrar;
     materias_respuesta: [string, string];
-
     respuesta: string[] = [];
 
     opciones = [
