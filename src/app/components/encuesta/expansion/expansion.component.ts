@@ -35,6 +35,8 @@ export class ExpansionComponent implements OnInit {
 
     placeholderSelect = 'Seleccionar';
 
+    loading = true;
+
     setStep(index: number) {
       this.step = index;
     }
@@ -59,6 +61,7 @@ export class ExpansionComponent implements OnInit {
              this.oferta = new Oferta(data['oferta']);
             //  console.log("La oferta en si:" +  this.oferta.getMaterias());
              this.materias = this.oferta.getMaterias();
+             this.loading = false;
          },
          err => {
            console.log("No se pudo traer la informacion de la oferta, intente nuevamente")
