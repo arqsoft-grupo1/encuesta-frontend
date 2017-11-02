@@ -28,6 +28,7 @@ export class ListaOfertaComponent implements OnInit {
             data => {
                   this.oferta = new Oferta(data['oferta']);
                   this.materias = this.oferta.getMaterias();
+                  this.materias = this.materias.sort((x, y) => x['orden'] > y['orden'])
                   this.materias_aprobadas = this.materias.filter(x => x['aprobada']);
                   this.materias = this.materias.filter(x => !x['aprobada']);
                   this.generarMateriasSugeridas();
