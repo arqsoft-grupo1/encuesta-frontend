@@ -18,9 +18,6 @@ import {DomSanitizer} from '@angular/platform-browser';
 
 export class ExpansionComponent implements OnInit {
     @Input() materias;
-    materias_respuesta: [string, string];
-    respuesta: string[] = [];
-    @Input() estadoMaterias;
 
     opciones = [
         {value: EstadoMateria.YaAprobe, viewValue: 'Ya aprobé'},
@@ -65,6 +62,7 @@ export class ExpansionComponent implements OnInit {
     getEstado(materia) {
         //console.log(this.materias[i]);
         // console.log(materia['estado']);
+        // console.log(materia);
         switch(materia['estado']) {
            case EstadoMateria.YaAprobe: {
               return 'done';
@@ -77,7 +75,6 @@ export class ExpansionComponent implements OnInit {
            }
            case EstadoMateria.VoyACursar: {
                 if (materia['comisionElegida'] === undefined) {
-                    console.log(materia);
                    return 'warning';
                 } else {
                     return 'mood';

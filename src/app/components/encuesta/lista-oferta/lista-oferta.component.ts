@@ -35,6 +35,8 @@ export class ListaOfertaComponent implements OnInit {
                   for(var i = 0; i < this.materias_aprobadas.length; i++) {
                       this.materias_aprobadas[i]['estado'] = EstadoMateria.YaAprobe;
                   }
+                  console.log(this.materias_aprobadas);
+
                 //   this.materias = this.materias.sort((x, y) => x['orden'] > y['orden']);
                   this.materias = this.materias.filter(x => !x['aprobada']);
                   this.generarMateriasSugeridas();
