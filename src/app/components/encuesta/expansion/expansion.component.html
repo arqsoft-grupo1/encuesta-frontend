@@ -11,21 +11,22 @@
               <td style="width:20%">
                   <mat-panel-description>
                     Elija una de las opciones
-                    <i class="material-icons">{{getEstado(i)}}</i>
+                    <i class="material-icons">{{getEstado(materia)}}</i>
 
                   </mat-panel-description>
               </td>
           </table>
         </mat-expansion-panel-header>
 
-        <mat-radio-group id="materia_{{i}}" name="materia_{{i}}" class="example-radio-group" [(ngModel)]="respuesta[i]">
+        <mat-radio-group id="materia_{{i}}" name="materia_{{i}}" class="example-radio-group" [(ngModel)]="materia['estado']">
+        <!-- <mat-radio-group id="materia_{{i}}" name="materia_{{i}}" class="example-radio-group" [(ngModel)]="respuesta[i]"> -->
             <mat-radio-button *ngFor="let opcion of opciones" class="example-radio-button" [value]="opcion.value">
                 {{opcion.viewValue}}
             </mat-radio-button>
         </mat-radio-group>
         <hr>
             <mat-form-field>
-                <mat-select [placeholder]="placeholderSelect" [(ngModel)]="comisionElegida[i]" name="comision" disabled={{!respuestaVoyACursar(i)}}>
+                <mat-select [placeholder]="placeholderSelect" [(ngModel)]="materia['comisionElegida']" name="comision" disabled={{!respuestaVoyACursar(materia)}}>
                     <mat-option *ngFor="let comision of materia.comisiones" [value]="comision.nombre">
                         {{comision.nombre}}
                     </mat-option>

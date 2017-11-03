@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { MatRadioModule } from '@angular/material';
 // import { NgModule } from '@angular/core';
 import { Materia } from '../../../model/materia'
+import { EstadoMateria } from '../../../model/estadosMateria'
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 
@@ -19,12 +20,13 @@ export class ExpansionComponent implements OnInit {
     @Input() materias;
     materias_respuesta: [string, string];
     respuesta: string[] = [];
+    @Input() estadoMaterias;
 
     opciones = [
-        {value: 'yaaprobe', viewValue: 'Ya aprobé'},
-        {value: 'todaviano', viewValue: 'Todavia no'},
-        {value: 'nopuedohorario', viewValue: 'La cursaría pero no puedo por el horario'},
-        {value: 'voyacursar', viewValue: 'Voy a cursar'}
+        {value: EstadoMateria.YaAprobe, viewValue: 'Ya aprobé'},
+        {value: EstadoMateria.TodaviaNo, viewValue: 'Todavia no'},
+        {value: EstadoMateria.NoPuedoPorHorario, viewValue: 'La cursaría pero no puedo por el horario'},
+        {value: EstadoMateria.VoyACursar, viewValue: 'Voy a cursar'}
     ];
 
     comisionElegida: string[] = [];
@@ -55,29 +57,31 @@ export class ExpansionComponent implements OnInit {
 
     }
 
-    respuestaVoyACursar(i) {
-        // console.log(this.respuesta);
-        return this.respuesta[i] == 'voyacursar';
+    respuestaVoyACursar(materia) {
+        // console.log(materia);
+        return materia['estado'] == EstadoMateria.VoyACursar;
     }
 
-    getEstado(i) {
+    getEstado(materia) {
         //console.log(this.materias[i]);
-        switch(this.respuesta[i]) {
-           case 'yaaprobe': {
+        // console.log(materia['estado']);
+        switch(materia['estado']) {
+           case EstadoMateria.YaAprobe: {
               return 'done';
            }
-           case 'todaviano': {
+           case EstadoMateria.TodaviaNo: {
               return 'error';
            }
-           case 'nopuedohorario': {
+           case EstadoMateria.NoPuedoPorHorario: {
               return 'schedule';
            }
-           case 'voyacursar': {
-               if (this.comisionElegida[i] === undefined) {
+           case EstadoMateria.VoyACursar: {
+                if (materia['comisionElegida'] === undefined) {
+                    console.log(materia);
                    return 'warning';
-               } else {
-                   return 'mood';
-               }
+                } else {
+                    return 'mood';
+                }
            }
            default: {
               return 'description';

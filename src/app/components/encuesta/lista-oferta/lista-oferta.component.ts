@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OfertaService } from "../../../services/encuesta/oferta.service";
 import { Oferta } from "../../../model/oferta";
+import { EstadoMateria } from "../../../model/estadosMateria";
 import { MatStepLabel } from '@angular/material';
 
 
@@ -49,6 +50,7 @@ export class ListaOfertaComponent implements OnInit {
     generarMateriasSugeridas() {
         var tmp_sugeridas = [];
         for(var i = 0; i<5; i++) {
+            // this.materias[i]['estado'] = EstadoMateria.VoyACursar;
             tmp_sugeridas.push(this.materias[i]);
         }
         this.agregarMateriasSugeridas(tmp_sugeridas);

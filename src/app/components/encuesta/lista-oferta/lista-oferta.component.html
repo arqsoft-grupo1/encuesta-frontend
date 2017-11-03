@@ -6,7 +6,7 @@
       <ng-template matStepLabel>Materias aprobadas</ng-template>
         <div>
             <mat-card>
-                <Expansion [materias]="materias_aprobadas"></Expansion>
+                <Expansion [materias]="materias_aprobadas" [estadoMaterias]="'aprobada'"></Expansion>
             </mat-card>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
@@ -16,7 +16,7 @@
       <ng-template matStepLabel>Materias sugeridas</ng-template>
     <div>
         <mat-card>
-            <Expansion [materias]="materias_sugeridas"></Expansion>
+            <Expansion [materias]="materias_sugeridas" [estadoMaterias]="'voyacursar'"></Expansion>
         </mat-card>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
