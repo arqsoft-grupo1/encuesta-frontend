@@ -32,6 +32,9 @@ export class ListaOfertaComponent implements OnInit {
                   this.oferta = new Oferta(data['oferta']);
                   this.materias = this.oferta.getMaterias();
                   this.materias_aprobadas = this.materias.filter(x => x['aprobada']);
+                  for(var i = 0; i < this.materias_aprobadas.length; i++) {
+                      this.materias_aprobadas[i]['estado'] = EstadoMateria.YaAprobe;
+                  }
                 //   this.materias = this.materias.sort((x, y) => x['orden'] > y['orden']);
                   this.materias = this.materias.filter(x => !x['aprobada']);
                   this.generarMateriasSugeridas();
@@ -50,7 +53,7 @@ export class ListaOfertaComponent implements OnInit {
     generarMateriasSugeridas() {
         var tmp_sugeridas = [];
         for(var i = 0; i<5; i++) {
-            // this.materias[i]['estado'] = EstadoMateria.VoyACursar;
+            this.materias[i]['estado'] = EstadoMateria.VoyACursar;
             tmp_sugeridas.push(this.materias[i]);
         }
         this.agregarMateriasSugeridas(tmp_sugeridas);
