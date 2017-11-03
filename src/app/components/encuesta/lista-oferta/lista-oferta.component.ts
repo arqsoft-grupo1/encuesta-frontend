@@ -35,7 +35,6 @@ export class ListaOfertaComponent implements OnInit {
                   for(var i = 0; i < this.materias_aprobadas.length; i++) {
                       this.materias_aprobadas[i]['estado'] = EstadoMateria.YaAprobe;
                   }
-                  console.log(this.materias_aprobadas);
 
                 //   this.materias = this.materias.sort((x, y) => x['orden'] > y['orden']);
                   this.materias = this.materias.filter(x => !x['aprobada']);
@@ -55,7 +54,6 @@ export class ListaOfertaComponent implements OnInit {
     generarMateriasSugeridas() {
         var tmp_sugeridas = [];
         for(var i = 0; i<5; i++) {
-            this.materias[i]['estado'] = EstadoMateria.VoyACursar;
             tmp_sugeridas.push(this.materias[i]);
         }
         this.agregarMateriasSugeridas(tmp_sugeridas);
@@ -66,12 +64,13 @@ export class ListaOfertaComponent implements OnInit {
         Agrega la materia en la lista de materias_sugeridas y para evitar duplicaciones
         la saca de la lista de materias restantes.
     */
-    agregarMateriasSugeridas(materias) {
-        for(var i = 0; i<materias.length; i++) {
-            if (!(this.existeMateriaSugeridaYa(materias[i]['id']))) {
-                this.materias_sugeridas.push(materias[i]);
+    agregarMateriasSugeridas(materias_sug) {
+        for(var i = 0; i<materias_sug.length; i++) {
+            if (!(this.existeMateriaSugeridaYa(materias_sug[i]['id']))) {
+                // materias_sug[i]['estado'] = EstadoMateria.VoyACursar;
+                this.materias_sugeridas.push(materias_sug[i]);
                 // Quito la materia de la lista de materias generales para que no este duplicada
-                this.eliminarMateriaDeMateriasGenerales(materias[i]['id']);
+                this.eliminarMateriaDeMateriasGenerales(materias_sug[i]['id']);
             }
         }
     }
