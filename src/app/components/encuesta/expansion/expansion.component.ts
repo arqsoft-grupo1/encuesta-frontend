@@ -1,5 +1,6 @@
 import { Component, ElementRef,ViewChild, OnInit, Input } from '@angular/core';
 import { OfertaService } from "../../../services/encuesta/oferta.service";
+import { MateriasAcursarService } from '../../../services/materias-acursar.service';
 import { Oferta } from "../../../model/oferta";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { MatRadioModule } from '@angular/material';
@@ -8,6 +9,7 @@ import { Materia } from '../../../model/materia'
 import { EstadoMateria } from '../../../model/estadosMateria'
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'Expansion',
@@ -18,6 +20,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 
 export class ExpansionComponent implements OnInit {
     @Input() materias ;
+    @Input() seleccion;
+    private materias$: Observable<any[]>;
 
     opciones = [
         {value: EstadoMateria.YaAprobe, viewValue: 'Ya aprobé'},
@@ -26,7 +30,7 @@ export class ExpansionComponent implements OnInit {
         {value: EstadoMateria.VoyACursar, viewValue: 'Voy a cursar'}
     ];
 
-    comisionElegida: string[] = [];
+    // comisionElegida: string[] = [];
 
     step = 0;
 
@@ -44,19 +48,29 @@ export class ExpansionComponent implements OnInit {
       this.step--;
     }
 
-
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor(private materiaACursarService: MateriasAcursarService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
 
   }
 
 
     ngOnInit(): void {
-
+        // var materia: Materia = {
+        //               "id":39,
+        //               "nombre": "La materia del Expansion",
+        //               "orden": 10,
+        //               "aprobada": false
+        //         }
+        //         console.log("pasa por aca, agregando materia");
+        //        this.materiaACursarService.agregarMateria(materia);
     }
 
     respuestaVoyACursar(materia) {
         // console.log(materia);
         return materia['estado'] == EstadoMateria.VoyACursar;
+    }
+
+    agregarMateria(materia) {
+        this.materiaACursarService.agregarMateria(materia);
     }
 
     getEstado(materia) {

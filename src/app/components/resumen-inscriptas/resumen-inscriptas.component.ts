@@ -1,17 +1,24 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy  } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'Resumen-inscriptas',
   templateUrl: './resumen-inscriptas.component.html',
-  styleUrls: ['./resumen-inscriptas.component.css']
+  styleUrls: ['./resumen-inscriptas.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResumenInscriptasComponent implements OnInit {
     @Input() seleccion;
+    @Output() onAgregarMateria: EventEmitter<any> = new EventEmitter();
+    @Output() onBorrarMateria: EventEmitter<any> = new EventEmitter();
 
   constructor(public snackBar: MatSnackBar) {
 
   }
+
+    crearMateria(materia) {
+         this.onAgregarMateria.emit({materia});
+     }
 
   openSnackBar() {
     this.snackBar.open("Encuesta enviada", this.cancelarEnvioEncuesta(), {

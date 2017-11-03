@@ -26,7 +26,7 @@
         </mat-radio-group>
         <hr>
             <mat-form-field>
-                <mat-select [placeholder]="placeholderSelect" [(ngModel)]="materia['comisionElegida']" name="comision" disabled={{!respuestaVoyACursar(materia)}}>
+                <mat-select [placeholder]="placeholderSelect" [(ngModel)]="materia['comisionElegida']" name="comision" disabled={{!respuestaVoyACursar(materia)}} (change)="agregarMateria(materia)">
                     <mat-option *ngFor="let comision of materia.comisiones" [value]="comision.nombre">
                         {{comision.nombre}}
                     </mat-option>

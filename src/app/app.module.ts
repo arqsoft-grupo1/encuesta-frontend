@@ -15,6 +15,7 @@ import { DatePipe } from '@angular/common';
 import { ResumenInscriptasComponent } from './components/resumen-inscriptas/resumen-inscriptas.component';
 import { MatListModule } from '@angular/material';
 import { ListaOfertaComponent } from './components/encuesta/lista-oferta/lista-oferta.component';
+import { MateriasAcursarService } from './services/materias-acursar.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { ListaOfertaComponent } from './components/encuesta/lista-oferta/lista-o
     FormsModule,
     MatListModule
   ],
-  providers: [OfertaService],
+  providers: [OfertaService, MateriasAcursarService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

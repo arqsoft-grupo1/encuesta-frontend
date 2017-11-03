@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { OfertaService } from "../../../services/encuesta/oferta.service";
+import { MateriasAcursarService } from '../../../services/materias-acursar.service';
 import { Oferta } from "../../../model/oferta";
+import { Materia } from "../../../model/materia";
 import { EstadoMateria } from "../../../model/estadosMateria";
 import { MatStepLabel } from '@angular/material';
+import { Observable } from 'rxjs/Rx';
 
 
 @Component({
@@ -11,12 +14,14 @@ import { MatStepLabel } from '@angular/material';
   styleUrls: ['./lista-oferta.component.css']
 })
 export class ListaOfertaComponent implements OnInit {
+    @Input() seleccion;
     matStepLabel;
     oferta;
     materias;
     materias_sugeridas = [];
     materias_aprobadas;
     loading = true;
+    private materias$: Observable<any[]>;
 
     /*
         Genera 3 variables a mostrar en distintos paneles.
@@ -26,7 +31,7 @@ export class ListaOfertaComponent implements OnInit {
         materias: Es la lista de materias que no se incluyen ni aprobadas ni sugeridas, de esta manera evitar informacion
                   duplicada.
     */
-    constructor(private ofertaService: OfertaService) {
+    constructor(private materiaACursarService: MateriasAcursarService, private ofertaService: OfertaService) {
         ofertaService.getOferta().subscribe(
             data => {
                   this.oferta = new Oferta(data['oferta']);
@@ -88,6 +93,6 @@ export class ListaOfertaComponent implements OnInit {
     }
 
     ngOnInit() {
-
+    
     }
 }
