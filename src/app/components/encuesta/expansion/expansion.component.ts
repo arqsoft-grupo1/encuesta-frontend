@@ -17,7 +17,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 
 
 export class ExpansionComponent implements OnInit {
-    @Input() materias;
+    @Input() materias ;
 
     opciones = [
         {value: EstadoMateria.YaAprobe, viewValue: 'Ya aprobé'},

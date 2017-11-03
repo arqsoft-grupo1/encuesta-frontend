@@ -42,14 +42,14 @@
 </table> -->
 
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
 
 <mat-list>
     <h2 matSubheader class="titulo">Materias a cursar</h2>
-    <mat-list-item *ngFor="let materia of seleccion_materias">
+    <mat-list-item *ngFor="let materia of seleccion">
         <span matTooltip={{materia.comision}}{{materia.horario}} >
             <button mat-icon-button (click)="borrarMateriaResumen(materia)">
-                <md-icon class="material-icons">delete</md-icon>
+                <mat-icon class="material-icons">delete</mat-icon>
             </button>
             {{materia.nombre}}
         </span>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -7,13 +7,11 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./resumen-inscriptas.component.css']
 })
 export class ResumenInscriptasComponent implements OnInit {
-    seleccion_materias = [
-      {nombre: 'Introduccion a la programacion', comision: 'Comision 1 ', horario: 'martes 19 a 22, viernes 18 a 21'},
-      {nombre: 'Introduccion a base de datos', comision: 'Comision 2 ',  horario: 'martes 19 a 22, viernes 18 a 21'},
-      {nombre: 'Matematica 1', comision: 'Comision 1 ', horario: 'martes 19 a 22, viernes 18 a 21'}
-    ];
+    @Input() seleccion;
 
-  constructor(public snackBar: MatSnackBar) {}
+  constructor(public snackBar: MatSnackBar) {
+
+  }
 
   openSnackBar() {
     this.snackBar.open("Encuesta enviada", this.cancelarEnvioEncuesta(), {
@@ -29,7 +27,7 @@ export class ResumenInscriptasComponent implements OnInit {
       this.snackBar.open("Materia Eliminada", this.cancelarMateriaBorrada(), {
         duration: 3000,
       });
-      this.seleccion_materias.splice(this.seleccion_materias.indexOf(materia), 1);
+      this.seleccion.splice(this.seleccion.indexOf(materia), 1);
   }
 
   cancelarMateriaBorrada(){
