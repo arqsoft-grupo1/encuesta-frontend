@@ -1,0 +1,13 @@
+<!-- <router-outlet></router-outlet> -->
+
+<div class="header">
+    <Header></Header>
+</div>
+<div class="divEncuesta">
+    <mat-card class="divExpansion">
+        <lista-oferta></lista-oferta>
+    </mat-card>
+    <mat-card class="divResumen">
+        <Resumen-inscriptas [seleccion]="materias$ | async" ></Resumen-inscriptas>
+    </mat-card>
+</div>

@@ -1,7 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
-import { MateriasAcursarService } from './services/materias-acursar.service';
-import { Materia } from "./model/materia"
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,19 +7,11 @@ import { Materia } from "./model/materia"
 })
 export class AppComponent {
   title = 'app';
-  private materias$;
 
-  constructor(private materiaACursarService: MateriasAcursarService) {
+  constructor() {
 
    }
 
-    ngOnInit() {
-        this.materias$ = this.materiaACursarService.getMaterias();
-    }
 
-
-    createUser(materia) {
-        this.materiaACursarService.agregarMateria(materia);
-    }
 
 }

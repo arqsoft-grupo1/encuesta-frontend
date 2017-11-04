@@ -1,0 +1,12 @@
+<Header></Header>
+<mat-card>
+    <div class="example-container">
+        <mat-form-field>
+            <input matInput placeholder="Email" [(ngModel)]="email">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Legajo" [(ngModel)]="legajo">
+        </mat-form-field>
+    </div>
+    <button mat-button (click)=login()>Login</button>
+</mat-card>

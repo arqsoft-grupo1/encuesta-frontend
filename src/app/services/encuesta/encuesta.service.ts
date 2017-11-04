@@ -7,6 +7,13 @@ import { Encuesta } from '../../model/encuesta'
 
 @Injectable()
 export class EncuestaService {
+
+    legajo;
+
+    setLegajo(legajo){
+        this.legajo = legajo;
+    }
+
     constructor(private http: HttpClient) {
 
     }
@@ -16,7 +23,7 @@ export class EncuestaService {
     }
 
     postEncuesta(encuesta: Encuesta) {
-        const body = {legajo: encuesta.legajo, encuesta: JSON.stringify(encuesta.materias)}
+        const body = {legajo: this.legajo, encuesta: JSON.stringify(encuesta.materias)}
         const req = this.http.post('http://localhost:8000/api/encuesta', body);
         req.subscribe();
     }

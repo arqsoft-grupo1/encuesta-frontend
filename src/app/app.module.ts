@@ -17,6 +17,20 @@ import { MatListModule } from '@angular/material';
 import { ListaOfertaComponent } from './components/encuesta/lista-oferta/lista-oferta.component';
 import { MateriasAcursarService } from './services/materias-acursar.service';
 import { EncuestaService } from './services/encuesta/encuesta.service';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { RouterModule, Routes } from '@angular/router';
+import { DetalleEncuestaComponent } from './components/detalle-encuesta/detalle-encuesta.component';
+
+const appRoutes: Routes = [
+    {path: 'homepage',
+     component: HomepageComponent},
+    {path: 'encuesta/:legajo',
+     component: DetalleEncuestaComponent},
+     {path: '',
+      redirectTo: '/homepage',
+      pathMatch: 'full'
+     }
+];
 
 @NgModule({
   declarations: [
@@ -25,7 +39,9 @@ import { EncuestaService } from './services/encuesta/encuesta.service';
     ExpansionComponent,
     HeaderComponent,
     ResumenInscriptasComponent,
-    ListaOfertaComponent
+    ListaOfertaComponent,
+    HomepageComponent,
+    DetalleEncuestaComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +50,10 @@ import { EncuestaService } from './services/encuesta/encuesta.service';
     MaterialModule,
     MatInputModule,
     FormsModule,
-    MatListModule
+    MatListModule,
+    RouterModule.forRoot(
+        appRoutes
+    )
   ],
   providers: [OfertaService, MateriasAcursarService, EncuestaService],
   bootstrap: [AppComponent]

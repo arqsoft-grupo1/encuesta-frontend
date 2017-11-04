@@ -1,49 +1,3 @@
-<!--
-    <mat-toolbar color="primary">
-      <span>Resumen</span>
-      <tr *ngFor="let materia of seleccion_materias">
-                <mat-toolbar-row>
-                    {{materia.nombre}}
-                    {{materia.comision}}
-                    {{materia.horario}}
-                <span class="example-spacer"></span>
-            </mat-toolbar-row>
-        </tr>
-    </mat-toolbar> -->
-
-
-
-
-<!-- <mat-toolbar>
-  <span class="titulo_toolbar" color="primary">Resumen</span>
-
-            <mat-toolbar-row color="primary" *ngFor="let materia of seleccion_materias">
-                <span matTooltip={{materia.comision}}{{materia.horario}} >
-                    {{materia.nombre}}
-                </span> -->
-<!-- -------------------esto no estaba----------------                 -->
-                <!-- {{materia.nombre}}
-                <br>
-                {{materia.comision}}
-                <br>
-                {{materia.horario}} -->
-<!-- --------------------------------------- -->
-                <!--
-        </mat-toolbar-row>
-</mat-toolbar> -->
-
-<!-- <table style="width:100%">
-    <tr class="resumen" width="100%">
-        <mat-card-title>Resumen</mat-card-title>
-    </tr>
-    <tr *ngFor="let materia of seleccion_materias">
-        <mat-card-content>{{materia.nombre}}</mat-card-content>
-    </tr>
-</table> -->
-
-
-<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
-
 <mat-list>
     <h2 matSubheader class="titulo">Materias a cursar</h2>
     <mat-list-item *ngFor="let materia of seleccion">
@@ -55,5 +9,5 @@
         </span>
     </mat-list-item>
     <hr>
-    <button mat-button (click)="enviarEncuesta(123)">Enviar encuesta</button>
+    <button mat-button (click)="enviarEncuesta()">Enviar encuesta</button>
 </mat-list>
