@@ -2,20 +2,11 @@ import { BehaviorSubject, Observable } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 import { Materia } from '../model/materia'
 
-export const DUMMY_DATA = [
-    {
-        "id":40,
-        "nombre": "Aspectos Legales",
-        "orden": 10,
-        "aprobada": false
-    }
-
-];
 
 @Injectable()
 export class MateriasAcursarService {
         private materiasACursarSubject = new BehaviorSubject([]);
-        private materias: Materia[];
+        private materias: Materia[] = [];
         constructor() { }
 
         getMaterias(): Observable<Materia[]> {
@@ -36,9 +27,10 @@ export class MateriasAcursarService {
           this.refresh();
         }
 
-        loadDummyData() {
-          this.materias = DUMMY_DATA;
-          this.refresh();
-        }
+        // loadDummyData() {
+        //   this.materias = DUMMY_DATA;
+
+        //   this.refresh();
+        // }
 
 }

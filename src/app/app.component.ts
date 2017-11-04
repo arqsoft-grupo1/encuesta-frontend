@@ -6,8 +6,8 @@ import { Materia } from "./model/materia"
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./app.component.css']
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   title = 'app';
@@ -19,16 +19,6 @@ export class AppComponent {
 
     ngOnInit() {
         this.materias$ = this.materiaACursarService.getMaterias();
-        // console.log(this.materias$);
-         this.materiaACursarService.loadDummyData();
-         var materia: Materia = {
-                       "id":39,
-                       "nombre": "Complementaria III",
-                       "orden": 10,
-                       "aprobada": false
-                 }
-                 console.log("pasa por aca, agregando materia");
-                this.materiaACursarService.agregarMateria(materia);
     }
 
 

@@ -93,6 +93,6 @@ export class ListaOfertaComponent implements OnInit {
     }
 
     ngOnInit() {
-    
+
     }
 }
