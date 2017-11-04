@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, ChangeDetectionStrategy  } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
-import { MateriasAcursarService } from '../../services/materias-acursar.service';
+import { Encuesta } from '../../model/encuesta';
+import { MateriaEncuesta } from '../../model/materiaEncuesta';
+import { EncuestaService } from '../../services/encuesta/encuesta.service';
 
 @Component({
   selector: 'Resumen-inscriptas',
@@ -11,33 +13,50 @@ import { MateriasAcursarService } from '../../services/materias-acursar.service'
 export class ResumenInscriptasComponent implements OnInit {
     @Input() seleccion;
 
-  constructor(private materiaACursarService: MateriasAcursarService, public snackBar: MatSnackBar) {
+    constructor(public encuestaService: EncuestaService, public snackBar: MatSnackBar) {
 
-  }
+    }
 
-  openSnackBar() {
-    this.snackBar.open("Encuesta enviada", this.cancelarEnvioEncuesta(), {
-      duration: 3000,
-    });
-  }
+    enviarEncuesta(legajo) {
+        var encuesta = new Encuesta(legajo, this.armarEncuesta());
+        this.encuestaService.postEncuesta(encuesta);
+        this.snackBar.open("Encuesta enviada", this.cancelarEnvioEncuesta(), {
+        duration: 3000,
+        });
+    }
 
-  cancelarEnvioEncuesta(){
+    armarEncuesta(){
+        var encuesta: MateriaEncuesta[] = [];
+        for(var i = 0; i < this.seleccion.length; i++){
+            var materia = this.seleccion[i];
+            var comision = this.extraerComisionElegida(this.seleccion[i]);
+            var materiaEncuesta = new MateriaEncuesta(materia, comision);
+            encuesta = [...encuesta, materiaEncuesta];
+        }
+
+        return encuesta;
+    }
+
+    private extraerComisionElegida(materia){
+        return materia['comisiones'].filter(comision => comision['nombre'] == materia['comisionElegida'])[0];
+    }
+
+    cancelarEnvioEncuesta(){
       return "Cancelar";
-  }
+    }
 
-  borrarMateriaResumen(materia){
+    borrarMateriaResumen(materia){
       this.snackBar.open("Materia Eliminada", this.cancelarMateriaBorrada(), {
         duration: 3000,
       });
-        this.materiaACursarService.borrarMateria(materia);
-  }
+      this.seleccion.splice(this.seleccion.indexOf(materia), 1);
+    }
 
-  cancelarMateriaBorrada(){
+    cancelarMateriaBorrada(){
       return "Cancelar";
-  }
+    }
 
-  ngOnInit() {
-    //   console.log("Prueba" + this.seleccion)
-  }
+    ngOnInit() {
+    }
 
 }

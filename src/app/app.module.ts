@@ -16,6 +16,7 @@ import { ResumenInscriptasComponent } from './components/resumen-inscriptas/resu
 import { MatListModule } from '@angular/material';
 import { ListaOfertaComponent } from './components/encuesta/lista-oferta/lista-oferta.component';
 import { MateriasAcursarService } from './services/materias-acursar.service';
+import { EncuestaService } from './services/encuesta/encuesta.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { MateriasAcursarService } from './services/materias-acursar.service';
     FormsModule,
     MatListModule
   ],
-  providers: [OfertaService, MateriasAcursarService],
+  providers: [OfertaService, MateriasAcursarService, EncuestaService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
