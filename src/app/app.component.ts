@@ -7,11 +7,10 @@ import { Materia } from "./model/materia"
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   title = 'app';
-  private materias$: Observable<any[]>;
+  private materias$;
 
   constructor(private materiaACursarService: MateriasAcursarService) {
 

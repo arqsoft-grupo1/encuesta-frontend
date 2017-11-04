@@ -23,7 +23,20 @@ export class MateriasAcursarService {
           * Evitar hacer this.user.push() pues estaríamos modificando los valores directamente,
           * se debe generar un nuevo array !!!!.
           */
+          console.log(materia);
           this.materias = [...this.materias, materia];
+          this.refresh();
+        }
+
+        borrarMateria(materia: Materia) {
+          /**
+          * Evitar hacer this.user.push() pues estaríamos modificando los valores directamente,
+          * se debe generar un nuevo array !!!!.
+          */
+          console.log("Intenta borrar");
+          materia['estado'] = undefined;
+          this.materias.splice(this.materias.indexOf(materia), 1);
+        //   this.materias = this.materias.filter(x => x['id'] == materia['id']);
           this.refresh();
         }
 

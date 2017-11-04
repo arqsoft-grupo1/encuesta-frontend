@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, ChangeDetectionStrategy  } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
+import { MateriasAcursarService } from '../../services/materias-acursar.service';
 
 @Component({
   selector: 'Resumen-inscriptas',
@@ -10,7 +11,7 @@ import { MatSnackBar } from '@angular/material';
 export class ResumenInscriptasComponent implements OnInit {
     @Input() seleccion;
 
-  constructor(public snackBar: MatSnackBar) {
+  constructor(private materiaACursarService: MateriasAcursarService, public snackBar: MatSnackBar) {
 
   }
 
@@ -28,7 +29,7 @@ export class ResumenInscriptasComponent implements OnInit {
       this.snackBar.open("Materia Eliminada", this.cancelarMateriaBorrada(), {
         duration: 3000,
       });
-      this.seleccion.splice(this.seleccion.indexOf(materia), 1);
+        this.materiaACursarService.borrarMateria(materia);
   }
 
   cancelarMateriaBorrada(){
@@ -36,6 +37,7 @@ export class ResumenInscriptasComponent implements OnInit {
   }
 
   ngOnInit() {
+    //   console.log("Prueba" + this.seleccion)
   }
 
 }

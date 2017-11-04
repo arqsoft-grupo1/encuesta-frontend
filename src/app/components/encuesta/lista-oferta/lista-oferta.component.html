@@ -6,7 +6,7 @@
       <ng-template matStepLabel>Materias aprobadas</ng-template>
         <div>
             <mat-card>
-                <Expansion [materias]="materias_aprobadas" [seleccion]="materias$ | async" (onAgregarMateria)="agregarMateria($event)" ></Expansion>
+                <Expansion [materias]="materias_aprobadas" [seleccion]="materias$ | async" ></Expansion>
             </mat-card>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
@@ -16,7 +16,7 @@
       <ng-template matStepLabel>Materias sugeridas</ng-template>
     <div>
         <mat-card>
-            <Expansion [materias]="materias_sugeridas" [seleccion]="materias$ | async" (onAgregarMateria)="agregarMateria($event)" ></Expansion>
+            <Expansion [materias]="materias_sugeridas" [seleccion]="materias$ | async" ></Expansion>
         </mat-card>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
@@ -24,7 +24,7 @@
   </mat-step>
   <mat-step>
     <mat-card>
-        <Expansion [materias]="materias" [seleccion]="materias$ | async" (onAgregarMateria)="agregarMateria($event)" ></Expansion>
+        <Expansion [materias]="materias" [seleccion]="materias$ | async"></Expansion>
     </mat-card>
     <div>
         <div>

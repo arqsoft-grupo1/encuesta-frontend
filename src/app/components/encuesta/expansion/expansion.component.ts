@@ -21,7 +21,7 @@ import { Observable } from 'rxjs/Rx';
 export class ExpansionComponent implements OnInit {
     @Input() materias ;
     @Input() seleccion;
-    private materias$: Observable<any[]>;
+    private materias$;
 
     opciones = [
         {value: EstadoMateria.YaAprobe, viewValue: 'Ya aprobé'},
@@ -54,14 +54,7 @@ export class ExpansionComponent implements OnInit {
 
 
     ngOnInit(): void {
-        // var materia: Materia = {
-        //               "id":39,
-        //               "nombre": "La materia del Expansion",
-        //               "orden": 10,
-        //               "aprobada": false
-        //         }
-        //         console.log("pasa por aca, agregando materia");
-        //        this.materiaACursarService.agregarMateria(materia);
+
     }
 
     respuestaVoyACursar(materia) {
@@ -70,6 +63,7 @@ export class ExpansionComponent implements OnInit {
     }
 
     agregarMateria(materia) {
+        console.log(materia);
         this.materiaACursarService.agregarMateria(materia);
     }
 

@@ -47,7 +47,7 @@
 <mat-list>
     <h2 matSubheader class="titulo">Materias a cursar</h2>
     <mat-list-item *ngFor="let materia of seleccion">
-        <span matTooltip={{materia.comision}}{{materia.horario}} >
+        <span matTooltip={{materia.comisionElegida}}{{materia.horario}} >
             <button mat-icon-button (click)="borrarMateriaResumen(materia)">
                 <mat-icon class="material-icons">delete</mat-icon>
             </button>
