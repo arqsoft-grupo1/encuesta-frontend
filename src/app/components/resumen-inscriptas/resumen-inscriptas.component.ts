@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material';
 import { Encuesta } from '../../model/encuesta';
 import { MateriaEncuesta } from '../../model/materiaEncuesta';
 import { EncuestaService } from '../../services/encuesta/encuesta.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'Resumen-inscriptas',
@@ -13,7 +14,7 @@ import { EncuestaService } from '../../services/encuesta/encuesta.service';
 export class ResumenInscriptasComponent implements OnInit {
     @Input() seleccion;
 
-    constructor(public encuestaService: EncuestaService, public snackBar: MatSnackBar) {
+    constructor(private router: Router, public encuestaService: EncuestaService, public snackBar: MatSnackBar) {
 
     }
 
@@ -23,6 +24,7 @@ export class ResumenInscriptasComponent implements OnInit {
         this.snackBar.open("Encuesta enviada", this.cancelarEnvioEncuesta(), {
         duration: 3000,
         });
+        // this.router.navigateByUrl('/homepage');
     }
 
     armarEncuesta(){

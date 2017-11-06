@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OfertaService } from "../../../services/encuesta/oferta.service";
+import { EncuestaService } from "../../../services/encuesta/encuesta.service";
 import { MateriasAcursarService } from '../../../services/materias-acursar.service';
 import { Oferta } from "../../../model/oferta";
 import { Materia } from "../../../model/materia";
@@ -31,9 +32,11 @@ export class ListaOfertaComponent implements OnInit {
         materias: Es la lista de materias que no se incluyen ni aprobadas ni sugeridas, de esta manera evitar informacion
                   duplicada.
     */
-    constructor(private materiaACursarService: MateriasAcursarService, private ofertaService: OfertaService) {
+    constructor(private encuestaService: EncuestaService, private materiaACursarService: MateriasAcursarService, private ofertaService: OfertaService) {
         ofertaService.getOferta().subscribe(
             data => {
+                  console.log(data['token']);
+                  encuestaService.setToken(data['token']);
                   this.oferta = new Oferta(data['oferta']);
                   this.materias = this.oferta.getMaterias();
                   this.materias_aprobadas = this.materias.filter(x => x['aprobada']);

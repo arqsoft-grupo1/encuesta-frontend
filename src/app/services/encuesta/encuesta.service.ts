@@ -9,9 +9,14 @@ import { Encuesta } from '../../model/encuesta'
 export class EncuestaService {
 
     legajo;
+    token;
 
     setLegajo(legajo){
         this.legajo = legajo;
+    }
+
+    setToken(token) {
+        this.token = token;
     }
 
     constructor(private http: HttpClient) {
@@ -23,7 +28,8 @@ export class EncuestaService {
     }
 
     postEncuesta(encuesta: Encuesta) {
-        const body = {legajo: this.legajo, encuesta: JSON.stringify(encuesta.materias)}
+        const body = {legajo: this.token + "", encuesta: JSON.stringify(encuesta.materias)}
+        console.log(body);
         const req = this.http.post('http://localhost:8000/api/encuesta', body);
         req.subscribe();
     }
