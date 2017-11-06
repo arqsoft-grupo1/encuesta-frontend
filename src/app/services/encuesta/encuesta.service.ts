@@ -30,7 +30,7 @@ export class EncuestaService {
     postEncuesta(encuesta: Encuesta) {
         const body = {legajo: this.token + "", encuesta: JSON.stringify(encuesta.materias)}
         console.log(body);
-        const req = this.http.post('http://localhost:8000/api/encuesta', body);
+        const req = this.http.post('http://arq-sof-encuesta-backend.herokuapp.com/api/encuesta', body);
         req.subscribe();
     }
 }
