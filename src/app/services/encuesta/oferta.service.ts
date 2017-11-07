@@ -23,7 +23,7 @@ export class OfertaService {
 
     getOferta() {
             // ruta heroku
-            return this.http.get<Oferta>('http://arq-sof-encuesta-backend.herokuapp.com/api/oferta');
+            return this.http.get<Oferta>('https://arq-sof-encuesta-backend.herokuapp.com/api/oferta');
         // .subscribe(
         //    data => {
         //         this.oferta = data['oferta'];
