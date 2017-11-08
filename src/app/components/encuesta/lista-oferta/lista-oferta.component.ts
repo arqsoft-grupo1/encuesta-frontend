@@ -47,6 +47,9 @@ export class ListaOfertaComponent implements OnInit {
                 //   this.materias = this.materias.sort((x, y) => x['orden'] > y['orden']);
                   this.materias = this.materias.filter(x => !x['aprobada']);
                   this.generarMateriasSugeridas();
+                  for(var i = 0; i < this.materias.length; i++) {
+                      this.materias[i]['estado'] = EstadoMateria.TodaviaNo;
+                  }
                   this.loading = false;
             },
             err => {

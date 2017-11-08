@@ -20,6 +20,7 @@ import { EncuestaService } from './services/encuesta/encuesta.service';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DetalleEncuestaComponent } from './components/detalle-encuesta/detalle-encuesta.component';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 const appRoutes: Routes = [
     {path: 'homepage',
@@ -45,6 +46,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    FlexLayoutModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,

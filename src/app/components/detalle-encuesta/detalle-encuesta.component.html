@@ -1,13 +1,32 @@
 <!-- <router-outlet></router-outlet> -->
 
-<div class="header">
-    <Header></Header>
+<div class="container"
+    fxLayout
+    fxLayout.xs="column"
+    fxLayoutAlign="center"
+    fxLayoutGap="100%"
+    fxLayoutGap.xs="0">
+    <div fxFlex="100%" class="header">
+        <Header></Header>
+    </div>
 </div>
-<div class="divEncuesta">
-    <mat-card class="divExpansion">
-        <lista-oferta></lista-oferta>
-    </mat-card>
-    <mat-card class="divResumen">
-        <Resumen-inscriptas [seleccion]="materias$ | async" ></Resumen-inscriptas>
-    </mat-card>
+
+<div class="container"
+    fxLayout
+    fxLayout.xs="column"
+    fxLayoutAlign="center"
+    fxLayoutGap="10px"
+    fxLayoutGap.xs="0">
+    <div fxFlex="100%" class="divEncuesta">
+        <div fxFlex="60%" class="divExpansion">
+            <mat-card >
+                <lista-oferta></lista-oferta>
+            </mat-card>
+        </div>
+        <div fxFlex="40%" fxFlexOrder="2" class="divResumen">
+            <mat-card >
+                <Resumen-inscriptas [seleccion]="materias$ | async" ></Resumen-inscriptas>
+            </mat-card>
+        </div>
+    </div>
 </div>
