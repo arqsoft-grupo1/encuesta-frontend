@@ -25,7 +25,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 const appRoutes: Routes = [
     {path: 'homepage',
      component: HomepageComponent},
-    {path: 'encuesta/:legajo',
+    {path: 'encuesta/:legajo/:mail',
      component: DetalleEncuestaComponent},
      {path: '',
       redirectTo: '/homepage',

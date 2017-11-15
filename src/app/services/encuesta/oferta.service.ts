@@ -21,10 +21,10 @@ export class OfertaService {
 
     }
 
-    getOferta() {
+    getOferta(email) {
             // ruta heroku
-            return this.http.get<Oferta>('https://arq-sof-encuesta-backend.herokuapp.com/api/oferta');
-            // return this.http.get<Oferta>('http://localhost:8000/api/oferta');
+            // return this.http.get<Oferta>('https://arq-sof-encuesta-backend.herokuapp.com/api/oferta/' + email);
+            return this.http.get<Oferta>('http://localhost:8000/api/oferta/' + email);
         // .subscribe(
         //    data => {
         //         this.oferta = data['oferta'];

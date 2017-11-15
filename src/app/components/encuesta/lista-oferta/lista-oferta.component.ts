@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import { OfertaService } from "../../../services/encuesta/oferta.service";
 import { EncuestaService } from "../../../services/encuesta/encuesta.service";
 import { MateriasAcursarService } from '../../../services/materias-acursar.service';
@@ -15,14 +16,14 @@ import { Observable } from 'rxjs/Rx';
   styleUrls: ['./lista-oferta.component.css']
 })
 export class ListaOfertaComponent implements OnInit {
-    @Input() seleccion;
+    mail;
     matStepLabel;
     oferta;
     materias;
     materias_sugeridas = [];
     materias_aprobadas;
     loading = true;
-    private materias$: Observable<any[]>;
+    // private materias$: Observable<any[]>;
 
     /*
         Genera 3 variables a mostrar en distintos paneles.
@@ -32,8 +33,11 @@ export class ListaOfertaComponent implements OnInit {
         materias: Es la lista de materias que no se incluyen ni aprobadas ni sugeridas, de esta manera evitar informacion
                   duplicada.
     */
-    constructor(private encuestaService: EncuestaService, private materiaACursarService: MateriasAcursarService, private ofertaService: OfertaService) {
-        ofertaService.getOferta().subscribe(
+    constructor(private route: ActivatedRoute, private encuestaService: EncuestaService, private materiaACursarService: MateriasAcursarService, private ofertaService: OfertaService) {
+        this.route.params.subscribe( params =>
+            this.mail = params['mail']
+         );
+        ofertaService.getOferta(this.mail).subscribe(
             data => {
                   console.log(data['token']);
                   encuestaService.setToken(data['token']);
@@ -43,6 +47,8 @@ export class ListaOfertaComponent implements OnInit {
                   for(var i = 0; i < this.materias_aprobadas.length; i++) {
                       this.materias_aprobadas[i]['estado'] = EstadoMateria.YaAprobe;
                   }
+                  // Setea en el servicio las materias aprobadas para finalmente armar la encuesta
+                  materiaACursarService.setMateriasYaAprobe = this.materias_aprobadas;
 
                 //   this.materias = this.materias.sort((x, y) => x['orden'] > y['orden']);
                   this.materias = this.materias.filter(x => !x['aprobada']);
@@ -50,6 +56,7 @@ export class ListaOfertaComponent implements OnInit {
                   for(var i = 0; i < this.materias.length; i++) {
                       this.materias[i]['estado'] = EstadoMateria.TodaviaNo;
                   }
+                  
                   this.loading = false;
             },
             err => {

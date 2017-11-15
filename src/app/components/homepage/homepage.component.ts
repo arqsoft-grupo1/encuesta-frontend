@@ -17,7 +17,9 @@ export class HomepageComponent implements OnInit {
     }
 
     login(){
-        this.router.navigateByUrl('/encuesta/' + this.legajo);
+        // this.router.navigateByUrl('/encuesta/' + this.legajo);
+
+        this.router.navigate(['/encuesta/' + this.legajo + '/' + this.email]);
     }
 
 }

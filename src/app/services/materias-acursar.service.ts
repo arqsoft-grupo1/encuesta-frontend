@@ -7,6 +7,10 @@ import { Materia } from '../model/materia'
 export class MateriasAcursarService {
         private materiasACursarSubject = new BehaviorSubject([]);
         private materias: Materia[] = [];
+        private materias_todavia_no: Materia[] = [];
+        private materias_no_puedohorario: Materia[] = [];
+        private materias_yaaprobe: Materia[] = [];
+
         constructor() { }
 
         getMaterias(): Observable<Materia[]> {
@@ -38,6 +42,30 @@ export class MateriasAcursarService {
           this.materias.splice(this.materias.indexOf(materia), 1);
         //   this.materias = this.materias.filter(x => x['id'] == materia['id']);
           this.refresh();
+        }
+
+        setMateriasTodaviaNo(materias) {
+            this.materias_todavia_no = materias;
+        }
+
+        setMateriasYaAprobe(materias) {
+            this.materias_yaaprobe = materias;
+        }
+
+        setMateriasNoPuedoPorHorario(materias) {
+            this.materias_no_puedohorario = materias;
+        }
+
+        getMateriasTodaviaNo() {
+            return this.materias_todavia_no;
+        }
+
+        getMateriasYaAprobe() {
+            return this.materias_yaaprobe;
+        }
+
+        getMateriasNoPuedoPorHorario() {
+            return this.materias_no_puedohorario;
         }
 
         // loadDummyData() {

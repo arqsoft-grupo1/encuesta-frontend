@@ -20,8 +20,7 @@ import { Observable } from 'rxjs/Rx';
 
 export class ExpansionComponent implements OnInit {
     @Input() materias ;
-    @Input() seleccion;
-    private materias$;
+    // private materias$;
 
     opciones = [
         {value: EstadoMateria.YaAprobe, viewValue: 'Ya aprobé'},
