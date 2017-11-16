@@ -20,7 +20,7 @@ export class ListaOfertaComponent implements OnInit {
     matStepLabel;
     oferta;
     materias;
-    materias_sugeridas = [];
+    materias_sugeridas;
     materias_aprobadas;
     loading = true;
     // private materias$: Observable<any[]>;
@@ -40,23 +40,14 @@ export class ListaOfertaComponent implements OnInit {
         ofertaService.getOferta(this.mail).subscribe(
             data => {
                   console.log(data['token']);
-                  encuestaService.setToken(data['token']);
+                  materiaACursarService.setToken(data['token']);
                   this.oferta = new Oferta(data['oferta']);
-                  this.materias = this.oferta.getMaterias();
-                  this.materias_aprobadas = this.materias.filter(x => x['aprobada']);
-                  for(var i = 0; i < this.materias_aprobadas.length; i++) {
-                      this.materias_aprobadas[i]['estado'] = EstadoMateria.YaAprobe;
-                  }
-                  // Setea en el servicio las materias aprobadas para finalmente armar la encuesta
-                  materiaACursarService.setMateriasYaAprobe = this.materias_aprobadas;
+                  materiaACursarService.setListaMaterias(this.oferta.getMaterias());
 
-                //   this.materias = this.materias.sort((x, y) => x['orden'] > y['orden']);
-                  this.materias = this.materias.filter(x => !x['aprobada']);
-                  this.generarMateriasSugeridas();
-                  for(var i = 0; i < this.materias.length; i++) {
-                      this.materias[i]['estado'] = EstadoMateria.TodaviaNo;
-                  }
-                  
+                  this.materias_sugeridas = materiaACursarService.getMateriasSugeridas();
+                  this.materias_aprobadas = materiaACursarService.getMateriasYaAprobe();
+                  this.materias = materiaACursarService.getListaMaterias();
+
                   this.loading = false;
             },
             err => {
@@ -64,46 +55,12 @@ export class ListaOfertaComponent implements OnInit {
             }
         );
     }
-    /*
-        Evalua UNICAMENTE en la variable materias_aprobadas, de esta manera aseguramos que no se
-        sugieran materias correlativas sin haber aprobado materias anteriores. Si es que posee correlativas
-        a estas las agrega en la variable materias_sugeridas.
-    */
-    generarMateriasSugeridas() {
-        var tmp_sugeridas = [];
-        for(var i = 0; i<5; i++) {
-            tmp_sugeridas.push(this.materias[i]);
-        }
-        this.agregarMateriasSugeridas(tmp_sugeridas);
-    }
-    /*
-        Si ya existe dentro de las materias sugeridas no la toma en cuenta
-        Tampoco la toma en cuenta si es correlativa pero ya esta aprobada
-        Agrega la materia en la lista de materias_sugeridas y para evitar duplicaciones
-        la saca de la lista de materias restantes.
-    */
-    agregarMateriasSugeridas(materias_sug) {
-        for(var i = 0; i<materias_sug.length; i++) {
-            if (!(this.existeMateriaSugeridaYa(materias_sug[i]['id']))) {
-                // materias_sug[i]['estado'] = EstadoMateria.VoyACursar;
-                this.materias_sugeridas.push(materias_sug[i]);
-                // Quito la materia de la lista de materias generales para que no este duplicada
-                this.eliminarMateriaDeMateriasGenerales(materias_sug[i]['id']);
-            }
-        }
-    }
 
     tieneMateriaAprobada(materiaId) {
         return this.materias_aprobadas.some(x => x['id'] === materiaId);
     }
 
-    existeMateriaSugeridaYa(materiaId) {
-        return this.materias_sugeridas.some(x => x['id'] === materiaId);
-    }
 
-    eliminarMateriaDeMateriasGenerales(materiaId) {
-        this.materias = this.materias.filter(x => x['id'] !== materiaId);
-    }
 
     ngOnInit() {
 

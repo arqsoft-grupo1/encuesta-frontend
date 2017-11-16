@@ -23,7 +23,7 @@ export class DetalleEncuestaComponent {
 
     ngOnInit() {
         this.sub = this.route.params.subscribe(
-            params => {this.encuestaService.setLegajo(+params['legajo']);
+            params => {this.materiaACursarService.setLegajo(+params['legajo']);
 
         });
         this.materias$ = this.materiaACursarService.getMaterias();

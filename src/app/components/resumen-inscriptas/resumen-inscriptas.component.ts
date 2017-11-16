@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, ChangeDetectionStrategy  } from '@ang
 import { MatSnackBar } from '@angular/material';
 import { Encuesta } from '../../model/encuesta';
 import { MateriaEncuesta } from '../../model/materiaEncuesta';
-import { EncuestaService } from '../../services/encuesta/encuesta.service';
+import { MateriasAcursarService } from '../../services/materias-acursar.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,13 +14,12 @@ import { Router } from '@angular/router';
 export class ResumenInscriptasComponent implements OnInit {
     @Input() seleccion;
 
-    constructor(private router: Router, public encuestaService: EncuestaService, public snackBar: MatSnackBar) {
+    constructor(private router: Router, public encuestaService: MateriasAcursarService, public snackBar: MatSnackBar) {
 
     }
 
     enviarEncuesta(legajo) {
-        var encuesta = new Encuesta(legajo, this.armarEncuesta());
-        this.encuestaService.postEncuesta(encuesta);
+        this.encuestaService.postEncuesta();
         this.snackBar.open("Encuesta enviada", this.cancelarEnvioEncuesta(), {
         duration: 3000,
         });

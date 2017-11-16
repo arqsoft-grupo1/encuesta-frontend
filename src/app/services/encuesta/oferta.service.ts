@@ -25,16 +25,6 @@ export class OfertaService {
             // ruta heroku
             // return this.http.get<Oferta>('https://arq-sof-encuesta-backend.herokuapp.com/api/oferta/' + email);
             return this.http.get<Oferta>('http://localhost:8000/api/oferta/' + email);
-        // .subscribe(
-        //    data => {
-        //         this.oferta = data['oferta'];
-        //         console.log("Oferta constructor:" +  this.oferta + (new Date()).getSeconds());
-        //         return this.oferta;
-        //    },
-        //    err => {
-        //      console.log("No se pudo traer la informacion de la oferta, intente nuevamente")
-        //    }
-        //  );
     }
 
 }

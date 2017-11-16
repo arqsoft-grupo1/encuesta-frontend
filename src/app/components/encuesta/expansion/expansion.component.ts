@@ -57,19 +57,14 @@ export class ExpansionComponent implements OnInit {
     }
 
     respuestaVoyACursar(materia) {
-        // console.log(materia);
         return materia['estado'] == EstadoMateria.VoyACursar;
     }
 
     agregarMateria(materia) {
-        console.log(materia);
         this.materiaACursarService.agregarMateria(materia);
     }
 
     getEstado(materia) {
-        //console.log(this.materias[i]);
-        // console.log(materia['estado']);
-        // console.log(materia);
         switch(materia['estado']) {
            case EstadoMateria.YaAprobe: {
               return 'done';
