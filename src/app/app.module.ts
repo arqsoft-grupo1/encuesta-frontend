@@ -15,7 +15,6 @@ import { DatePipe } from '@angular/common';
 import { ResumenInscriptasComponent } from './components/resumen-inscriptas/resumen-inscriptas.component';
 import { MatListModule } from '@angular/material';
 import { ListaOfertaComponent } from './components/encuesta/lista-oferta/lista-oferta.component';
-import { MateriasAcursarService } from './services/materias-acursar.service';
 import { EncuestaService } from './services/encuesta/encuesta.service';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -57,7 +56,7 @@ const appRoutes: Routes = [
         appRoutes
     )
   ],
-  providers: [OfertaService, MateriasAcursarService, EncuestaService],
+  providers: [OfertaService, EncuestaService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

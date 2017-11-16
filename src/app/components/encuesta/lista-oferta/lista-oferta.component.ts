@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { OfertaService } from "../../../services/encuesta/oferta.service";
-import { EncuestaService } from "../../../services/encuesta/encuesta.service";
-import { MateriasAcursarService } from '../../../services/materias-acursar.service';
+import { EncuestaService } from '../../../services/encuesta/encuesta.service';
 import { Oferta } from "../../../model/oferta";
 import { Materia } from "../../../model/materia";
 import { EstadoMateria } from "../../../model/estadosMateria";
@@ -33,20 +32,20 @@ export class ListaOfertaComponent implements OnInit {
         materias: Es la lista de materias que no se incluyen ni aprobadas ni sugeridas, de esta manera evitar informacion
                   duplicada.
     */
-    constructor(private route: ActivatedRoute, private encuestaService: EncuestaService, private materiaACursarService: MateriasAcursarService, private ofertaService: OfertaService) {
+    constructor(private route: ActivatedRoute, private encuestaService: EncuestaService, private ofertaService: OfertaService) {
         this.route.params.subscribe( params =>
             this.mail = params['mail']
          );
         ofertaService.getOferta(this.mail).subscribe(
             data => {
                   console.log(data['token']);
-                  materiaACursarService.setToken(data['token']);
+                  encuestaService.setToken(data['token']);
                   this.oferta = new Oferta(data['oferta']);
-                  materiaACursarService.setListaMaterias(this.oferta.getMaterias());
+                  encuestaService.setListaMaterias(this.oferta.getMaterias());
 
-                  this.materias_sugeridas = materiaACursarService.getMateriasSugeridas();
-                  this.materias_aprobadas = materiaACursarService.getMateriasYaAprobe();
-                  this.materias = materiaACursarService.getListaMaterias();
+                  this.materias_sugeridas = encuestaService.getMateriasSugeridas();
+                  this.materias_aprobadas = encuestaService.getMateriasYaAprobe();
+                  this.materias = encuestaService.getListaMaterias();
 
                   this.loading = false;
             },

@@ -1,9 +1,8 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { MateriasAcursarService } from '../../services/materias-acursar.service';
+import { EncuestaService } from '../../services/encuesta/encuesta.service';
 import { Materia } from "../../model/materia"
 import { ActivatedRoute } from '@angular/router';
-import { EncuestaService } from '../../services/encuesta/encuesta.service';
 
 @Component({
   selector: 'DetalleEncuesta',
@@ -17,21 +16,21 @@ export class DetalleEncuestaComponent {
   legajo: number;
   private sub: any;
 
-  constructor(private materiaACursarService: MateriasAcursarService, private route: ActivatedRoute, private encuestaService: EncuestaService) {
+  constructor(private encuestaService: EncuestaService, private route: ActivatedRoute) {
 
    }
 
     ngOnInit() {
         this.sub = this.route.params.subscribe(
-            params => {this.materiaACursarService.setLegajo(+params['legajo']);
+            params => {this.encuestaService.setLegajo(+params['legajo']);
 
         });
-        this.materias$ = this.materiaACursarService.getMaterias();
+        this.materias$ = this.encuestaService.getMaterias();
     }
 
 
     createUser(materia) {
-        this.materiaACursarService.agregarMateria(materia);
+        this.encuestaService.agregarMateria(materia);
     }
 
 }

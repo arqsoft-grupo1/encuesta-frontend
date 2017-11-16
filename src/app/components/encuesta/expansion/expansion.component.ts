@@ -1,6 +1,6 @@
 import { Component, ElementRef,ViewChild, OnInit, Input } from '@angular/core';
 import { OfertaService } from "../../../services/encuesta/oferta.service";
-import { MateriasAcursarService } from '../../../services/materias-acursar.service';
+import { EncuestaService } from '../../../services/encuesta/encuesta.service';
 import { Oferta } from "../../../model/oferta";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { MatRadioModule } from '@angular/material';
@@ -47,7 +47,7 @@ export class ExpansionComponent implements OnInit {
       this.step--;
     }
 
-  constructor(private materiaACursarService: MateriasAcursarService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor(private encuestaService: EncuestaService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
 
   }
 
@@ -61,7 +61,7 @@ export class ExpansionComponent implements OnInit {
     }
 
     agregarMateria(materia) {
-        this.materiaACursarService.agregarMateria(materia);
+        this.encuestaService.agregarMateria(materia);
     }
 
     getEstado(materia) {
