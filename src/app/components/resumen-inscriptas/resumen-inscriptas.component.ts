@@ -18,7 +18,7 @@ export class ResumenInscriptasComponent implements OnInit {
 
     }
 
-    enviarEncuesta(legajo) {
+    enviarEncuesta() {
         this.encuestaService.postEncuesta();
         this.snackBar.open("Encuesta enviada", this.cancelarEnvioEncuesta(), {
         duration: 3000,

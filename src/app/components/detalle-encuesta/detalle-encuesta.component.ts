@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetalleEncuestaComponent {
   title = 'app';
-  private materias$;
+   materias$;
 
   legajo: number;
   private sub: any;
