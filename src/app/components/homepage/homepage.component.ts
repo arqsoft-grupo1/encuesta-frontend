@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { UtilidadesService } from '../../services/utilidades.service';
+import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Director } from '../../model/director'
 
 @Component({
   selector: 'Homepage',
@@ -11,15 +14,23 @@ export class HomepageComponent implements OnInit {
     email: any;
     legajo: number;
 
-    constructor(private router: Router) { }
+    director;
+
+    constructor(private router: Router, private utilidadesService: UtilidadesService, private http: HttpClient) { }
 
     ngOnInit() {
     }
 
     login(){
-        // this.router.navigateByUrl('/encuesta/' + this.legajo);
-
-        this.router.navigate(['/encuesta/' + this.legajo + '/' + this.email]);
+        this.utilidadesService.getDirector(this.email).subscribe(
+            data => {
+                console.log("SOY FIDEL");
+            },
+            err => {
+                this.router.navigate(['/encuesta/' + this.legajo + '/' + this.email]);
+                console.log("No hay director")
+            }
+      );
     }
 
 }

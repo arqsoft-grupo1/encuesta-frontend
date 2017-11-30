@@ -16,6 +16,7 @@ import { ResumenInscriptasComponent } from './components/resumen-inscriptas/resu
 import { MatListModule } from '@angular/material';
 import { ListaOfertaComponent } from './components/encuesta/lista-oferta/lista-oferta.component';
 import { EncuestaService } from './services/encuesta/encuesta.service';
+import { UtilidadesService } from './services/utilidades.service';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DetalleEncuestaComponent } from './components/detalle-encuesta/detalle-encuesta.component';
@@ -56,7 +57,7 @@ const appRoutes: Routes = [
         appRoutes
     )
   ],
-  providers: [OfertaService, EncuestaService],
+  providers: [OfertaService, EncuestaService, UtilidadesService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
