@@ -12,4 +12,9 @@ export class UtilidadesService {
   getDirector(email) {
       return this.http.get<Director>('http://localhost:8000/api/director/' + email);
   }
+
+  getEncuestasRespondidas(){
+      return this.http.get('http://localhost:8000/api/porcentaje_respuestas');
+  }
+
 }

@@ -43,6 +43,7 @@ export class HomepageComponent implements OnInit {
         this.utilidadesService.getDirector(this.email).subscribe(
             data => {
                 this.esDirector = true;
+                this.router.navigate(['/vista-director/']);
             },
             err => {
                 this.router.navigate(['/encuesta/' + this.legajo + '/' + this.email]);
@@ -52,17 +53,17 @@ export class HomepageComponent implements OnInit {
     }
 }
 
-    // @Component({
-    //   selector: 'dialog-overview-example-dialog',
-    //   templateUrl: 'dialog-overview-example-dialog.html',
-    // })
-    // export class DialogOverviewExampleDialog {
-    //
-    //   constructor(
-    //     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    //     @Inject(MAT_DIALOG_DATA) public data: any) { }
-    //
-    //   onNoClick(): void {
-    //     this.dialogRef.close();
-    //   }
+//     @Component({
+//           selector: 'dialog-overview-example-dialog',
+//           templateUrl: 'dialog-overview-example-dialog.html',
+//     })
+//     export class DialogOverviewExampleDialog {
+//
+//       constructor(
+//         public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+//         @Inject(MAT_DIALOG_DATA) public data: any) { }
+//
+//       onNoClick(): void {
+//         this.dialogRef.close();
+//       }
 // }

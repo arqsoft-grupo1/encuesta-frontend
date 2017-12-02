@@ -21,6 +21,8 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DetalleEncuestaComponent } from './components/detalle-encuesta/detalle-encuesta.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { VistaDirectorComponent } from './components/vista-director/vista-director.component';
+import { ChartsModule } from 'ng2-charts';
 
 const appRoutes: Routes = [
     {path: 'homepage',
@@ -30,7 +32,9 @@ const appRoutes: Routes = [
      {path: '',
       redirectTo: '/homepage',
       pathMatch: 'full'
-     }
+  },
+  {path: 'vista-director',
+   component: VistaDirectorComponent},
 ];
 
 @NgModule({
@@ -42,7 +46,8 @@ const appRoutes: Routes = [
     ResumenInscriptasComponent,
     ListaOfertaComponent,
     HomepageComponent,
-    DetalleEncuestaComponent
+    DetalleEncuestaComponent,
+    VistaDirectorComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +58,7 @@ const appRoutes: Routes = [
     MatInputModule,
     FormsModule,
     MatListModule,
+    ChartsModule,
     RouterModule.forRoot(
         appRoutes
     )

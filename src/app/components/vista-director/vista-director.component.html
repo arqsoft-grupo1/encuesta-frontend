@@ -1,0 +1,19 @@
+<div class="container"
+    fxLayout
+    fxLayout.xs="column"
+    fxLayoutAlign="center"
+    fxLayoutGap="100%"
+    fxLayoutGap.xs="0">
+    <div fxFlex="100%" class="header">
+        <Header></Header>
+    </div>
+</div>
+<div class="divChart" *ngIf=(dibujarGrafico)>
+    <canvas baseChart
+                [data]="doughnutChartData"
+                [labels]="doughnutChartLabels"
+                [chartType]="doughnutChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+    </canvas>
+</div>

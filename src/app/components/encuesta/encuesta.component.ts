@@ -8,7 +8,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+// import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { OfertaService } from "../../services/encuesta/oferta.service";
 import { Oferta } from "../../model/oferta";
 // import { MatExpansionModule } from '@angular/material';
