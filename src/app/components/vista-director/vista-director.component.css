@@ -1,10 +1,15 @@
+.divExpansion{
+	display: table;
+	width: 60%;
+}
+
 .divChart {
 	/*position: absolute;*/
-	right: 20%;
+	right: 7%;
 	top: 22%;
 	border-color: rgba(255,252,252,.87);
 	/*border-style: outset;*/
-	width: 40%;
+	width: 25%;
 }
 
 .header {
