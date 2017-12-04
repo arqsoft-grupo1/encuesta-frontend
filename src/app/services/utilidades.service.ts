@@ -14,7 +14,7 @@ export class UtilidadesService {
   }
 
   getEncuestasRespondidas(){
-      return this.http.get('http://localhost:8000/api/porcentaje_respuestas');
+      return this.http.get('http://localhost:8000/api/encuesta/porcentaje_respuestas');
   }
 
 }

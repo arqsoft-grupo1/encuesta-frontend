@@ -185,6 +185,7 @@ export class EncuestaService {
         postEncuesta() {
             var encuesta: Encuesta = this.generarEncuesta();
             const body = encuesta.getMaterias();
+            body['legajo'] = this.legajo;
             console.log(body);
             console.log(this.token);
             const req = this.http.post('http://localhost:8000/api/encuesta/' + this.token, body);
