@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UtilidadesService } from '../../services/utilidades.service';
 
 @Component({
@@ -10,15 +10,32 @@ export class VistaDirectorComponent implements OnInit {
 
     // Doughnut
     public doughnutChartLabels:string[] = ['Encuestas completadas', 'Encuestas no completadas'];
-    // public doughnutChartData:number[] = [20, 80];
     public doughnutChartData:number[] = [];
     public doughnutChartType:string = 'doughnut';
 
     public dibujarGrafico = false;
 
+    public materiasOrdenadasPorSaturacion:any = [];
+
+    step = 0;
+
+    placeholderSelect = 'Seleccionar';
+
+    setStep(index: number) {
+      this.step = index;
+    }
+
+    nextStep() {
+      this.step++;
+    }
+
+    prevStep() {
+      this.step--;
+    }
+
     constructor(private utilidadesService: UtilidadesService){
         this.getEncuestasRespondidas();
-
+        this.getMateriasOrdenadasPorSaturacion();
     }
 
     // events
@@ -43,5 +60,16 @@ export class VistaDirectorComponent implements OnInit {
 
         );
     }
+
+    getMateriasOrdenadasPorSaturacion(){
+        var alumnosRespondieron = this.utilidadesService.getMateriasOrdenadasPorSaturacion().subscribe(
+            data => {
+                this.materiasOrdenadasPorSaturacion = data;
+                console.log(data);
+            }
+
+        );
+    }
+
 
 }

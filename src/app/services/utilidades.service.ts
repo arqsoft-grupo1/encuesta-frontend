@@ -17,4 +17,8 @@ export class UtilidadesService {
       return this.http.get('http://localhost:8000/api/encuesta/porcentaje_respuestas');
   }
 
+  getMateriasOrdenadasPorSaturacion(){
+      return this.http.get('http://localhost:8000/api/materia/');
+  }
+
 }

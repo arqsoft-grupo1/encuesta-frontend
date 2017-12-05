@@ -16,3 +16,29 @@
 	width: 100%;
 	/*position: fixed;*/
 }
+
+.example-selected-value {
+  margin: 15px 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+#respuesta_incompleta {
+    background-color: #EAF7FB;
+}
+
+#respuesta_ok {
+    background-color: #F9FFFB;
+}
+
+.paginator {
+
+}
