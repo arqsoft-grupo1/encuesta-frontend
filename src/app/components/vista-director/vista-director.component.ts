@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UtilidadesService } from '../../services/utilidades.service';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'vista-director',
@@ -20,6 +21,11 @@ export class VistaDirectorComponent implements OnInit {
     step = 0;
 
     placeholderSelect = 'Seleccionar';
+
+    color = 'warn';
+    mode = 'determinate';
+    value = 50;
+    bufferValue = 75;
 
     setStep(index: number) {
       this.step = index;

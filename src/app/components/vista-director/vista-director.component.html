@@ -8,7 +8,6 @@
         <Header></Header>
     </div>
 </div>
-
 <div class="container"
     fxLayout
     fxLayout.xs="column"
@@ -18,9 +17,6 @@
     <div fxFlex="100%">
         <div fxFlex="60%" class="divExpansion">
             <mat-card >
-
-
-
                 <mat-accordion class="expansion" *ngFor="let materia of materiasOrdenadasPorSaturacion; let i = index" [attr.data-index]="i">
                   <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle="true">
                     <mat-expansion-panel-header>
@@ -37,39 +33,36 @@
                           </td>
                       </table>
                     </mat-expansion-panel-header>
-
-
                     <mat-list>
                       <h3 mat-subheader>Comisiones</h3>
                       <mat-list-item *ngFor="let comision of materia.comisiones">
-                          {{comision.nombre}}
+
+
+                          <mat-card>
+                            <mat-card-content>
+                              <!-- <h2 class="example-h2">Result</h2> -->
+                              {{comision.nombre}} - cupo disponible: {{comision.cupo}} - Alumnos inscriptos: {{comision.inscriptos.length}}
+                              <section class="example-section">
+                                <mat-progress-bar
+                                    class="example-margin"
+                                    [color]="color"
+                                    [mode]="mode"
+                                    [value]="value"
+                                    [bufferValue]="bufferValue">
+                                </mat-progress-bar>
+                              </section>
+                            </mat-card-content>
+                          </mat-card>
+
+
+
                       </mat-list-item>
                   </mat-list>
-
-                    <!-- <mat-radio-group id="{{materia.id}}_{{i}}" name="{{materia.id}}_{{i}}" class="example-radio-group" [(ngModel)]="materia['estado']">
-                        <mat-radio-button *ngFor="let opcion of opciones" class="example-radio-button" [value]="opcion.value">
-                            {{opcion.viewValue}}
-                        </mat-radio-button>
-                    </mat-radio-group>
-                    <hr> -->
-                        <!-- <mat-form-field>
-                            <mat-select [placeholder]="placeholderSelect" [(ngModel)]="materia['comisionElegida']" name="comision" disabled={{!respuestaVoyACursar(materia)}} (change)="agregarMateria(materia)">
-                                <mat-option *ngFor="let comision of materia.comisiones" [value]="comision.comision_id">
-                                    {{comision.nombre}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field> -->
                     <mat-action-row>
                       <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
                     </mat-action-row>
-
-
-
-
                   </mat-expansion-panel>
                 </mat-accordion>
-
-
             </mat-card>
         </div>
         <div fxFlex="40%" fxFlexOrder="2" class="divChart">
