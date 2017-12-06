@@ -37,23 +37,13 @@
                       <h3 mat-subheader>Comisiones</h3>
                       <mat-list-item *ngFor="let comision of materia.comisiones">
 
-
-                          <!-- <mat-card>
-                            <mat-card-content> -->
-                              <!-- <h2 class="example-h2">Result</h2> -->
                               {{comision.nombre}} - cupo disponible: {{comision.cupo}} - Alumnos inscriptos: {{comision.inscriptos.length}}
-                              <!-- <section class="example-section"> -->
                                 <mat-progress-bar
                                     class="example-margin"
-                                    [color]="color"
+                                    [color]="getColor(comision)"
                                     [mode]="mode"
-                                    [value]="value">
+                                    [value]="getValue(comision)">
                                 </mat-progress-bar>
-                              <!-- </section> -->
-                            <!-- </mat-card-content>
-                          </mat-card> -->
-
-
 
                       </mat-list-item>
                   </mat-list>

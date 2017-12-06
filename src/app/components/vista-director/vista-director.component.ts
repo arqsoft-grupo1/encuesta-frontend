@@ -24,7 +24,19 @@ export class VistaDirectorComponent implements OnInit {
 
     color = 'primary';
     mode = 'determinate';
-    value = 99;
+    value = 0;
+
+    getValue(comision){
+        return ((comision.inscriptos.length) * 100) / 30;
+    }
+
+    getColor(comision){
+        if(comision.inscriptos.length > 25){
+            return "warn";
+        } else{
+            return "primary";
+        }
+    }
 
     setStep(index: number) {
       this.step = index;
