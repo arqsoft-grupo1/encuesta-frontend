@@ -26,8 +26,17 @@ export class VistaDirectorComponent implements OnInit {
     mode = 'determinate';
     value = 0;
 
+    getHayAlgunaComisionSaturada(materia){
+        for (var value of materia.comisiones) {
+          if(value.inscriptos.length > 25){
+              return true;
+          }
+        }
+        return false;
+    }
+
     getValue(comision){
-        return ((comision.inscriptos.length) * 100) / 30;
+        return ((comision.inscriptos.length) * 100) / comision.cupo;
     }
 
     getColor(comision){

@@ -23,12 +23,19 @@
                       <table style="width:100%">
                           <td style="width:80%">
                               <mat-panel-title>
-                                {{materia.nombre}}
+                                  <div *ngIf="getHayAlgunaComisionSaturada(materia);else no_esta_saturada">
+                                      <font color = "red">{{materia.nombre}}</font>
+                                  </div>
+                                  <ng-template #no_esta_saturada>{{materia.nombre}}</ng-template>
                               </mat-panel-title>
                           </td>
                           <td style="width:20%">
                               <mat-panel-description>
-                                Total inscriptos:  &nbsp;<b>{{getTotalInscriptos(materia)}}</b>
+                                  <div *ngIf="getHayAlgunaComisionSaturada(materia);else other_content">
+                                      <font color = "red">Total inscriptos:  &nbsp;<b>{{getTotalInscriptos(materia)}}</b></font>
+                                  </div>
+                                  <ng-template #other_content>Total inscriptos:  &nbsp;<b>{{getTotalInscriptos(materia)}}</b></ng-template>
+
                               </mat-panel-description>
                           </td>
                       </table>
@@ -37,7 +44,7 @@
                       <h3 mat-subheader>Comisiones</h3>
                       <mat-list-item *ngFor="let comision of materia.comisiones">
 
-                              {{comision.nombre}} - cupo disponible: {{comision.cupo}} - Alumnos inscriptos: {{comision.inscriptos.length}}
+                              {{comision.nombre}} Alumnos inscriptos: {{comision.inscriptos.length}}
                                 <mat-progress-bar
                                     class="example-margin"
                                     [color]="getColor(comision)"
