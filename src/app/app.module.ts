@@ -18,6 +18,7 @@ import { ListaOfertaComponent } from './components/encuesta/lista-oferta/lista-o
 import { EncuestaService } from './services/encuesta/encuesta.service';
 import { UtilidadesService } from './services/utilidades.service';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { DialogOverviewExampleDialog } from './components/homepage/homepage.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DetalleEncuestaComponent } from './components/detalle-encuesta/detalle-encuesta.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -46,9 +47,11 @@ const appRoutes: Routes = [
     ResumenInscriptasComponent,
     ListaOfertaComponent,
     HomepageComponent,
+    DialogOverviewExampleDialog,
     DetalleEncuestaComponent,
     VistaDirectorComponent
   ],
+  entryComponents: [DialogOverviewExampleDialog],
   imports: [
     BrowserModule,
     FlexLayoutModule,
