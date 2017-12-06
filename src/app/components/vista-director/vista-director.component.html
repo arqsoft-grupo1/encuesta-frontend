@@ -38,21 +38,20 @@
                       <mat-list-item *ngFor="let comision of materia.comisiones">
 
 
-                          <mat-card>
-                            <mat-card-content>
+                          <!-- <mat-card>
+                            <mat-card-content> -->
                               <!-- <h2 class="example-h2">Result</h2> -->
                               {{comision.nombre}} - cupo disponible: {{comision.cupo}} - Alumnos inscriptos: {{comision.inscriptos.length}}
-                              <section class="example-section">
+                              <!-- <section class="example-section"> -->
                                 <mat-progress-bar
                                     class="example-margin"
                                     [color]="color"
                                     [mode]="mode"
-                                    [value]="value"
-                                    [bufferValue]="bufferValue">
+                                    [value]="value">
                                 </mat-progress-bar>
-                              </section>
-                            </mat-card-content>
-                          </mat-card>
+                              <!-- </section> -->
+                            <!-- </mat-card-content>
+                          </mat-card> -->
 
 
 

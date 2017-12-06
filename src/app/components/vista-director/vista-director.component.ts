@@ -22,10 +22,9 @@ export class VistaDirectorComponent implements OnInit {
 
     placeholderSelect = 'Seleccionar';
 
-    color = 'warn';
+    color = 'primary';
     mode = 'determinate';
-    value = 50;
-    bufferValue = 75;
+    value = 99;
 
     setStep(index: number) {
       this.step = index;
