@@ -43,8 +43,11 @@ export class VistaDirectorComponent implements OnInit {
         if(comision.inscriptos.length > 25){
             return "warn";
         } else{
-            return "primary";
+            if(comision.inscriptos.length >= 20){
+                return "accent";
+            }
         }
+        return "primary";
     }
 
     setStep(index: number) {
