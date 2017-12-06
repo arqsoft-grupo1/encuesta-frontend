@@ -7,6 +7,10 @@ export class Materia {
       public aprobada: boolean
   ) {}
 
+  getTotalInscriptos(){
+      return 22;
+  }
+
   // getOrden() {
   //     return this.orden;
   // }

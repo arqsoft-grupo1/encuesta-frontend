@@ -33,6 +33,14 @@ export class VistaDirectorComponent implements OnInit {
       this.step--;
     }
 
+    getTotalInscriptos(materia){
+        var n = 0;
+        for (var value of materia.comisiones) {
+          n += value.inscriptos.length;
+        }
+        return n;
+    }
+
     constructor(private utilidadesService: UtilidadesService){
         this.getEncuestasRespondidas();
         this.getMateriasOrdenadasPorSaturacion();

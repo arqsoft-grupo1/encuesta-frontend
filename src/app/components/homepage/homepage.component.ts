@@ -41,8 +41,8 @@ export class HomepageComponent implements OnInit {
         this.utilidadesService.getDirector(this.email).subscribe(
             data => {
                 this.esDirector = true;
-                this.openDialog();
-                // this.router.navigate(['/vista-director/']);
+                // this.openDialog();
+                this.router.navigate(['/vista-director/']);
             },
             err => {
                 this.router.navigate(['/encuesta/' + this.legajo + '/' + this.email]);
