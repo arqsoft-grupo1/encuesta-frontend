@@ -114,12 +114,14 @@ export class EncuestaService {
         }
 
         private filtrarAprobadas() {
-            this.materias_yaaprobe = this.lista_materias.filter(x => x['aprobada']);
+            // this.materias_yaaprobe = this.lista_materias.filter(x => x['aprobada']);
+            this.materias_yaaprobe = this.lista_materias.filter(x => x['estado'] == 'yaaprobe');
             for(var i = 0; i < this.materias_yaaprobe.length; i++) {
                 this.materias_yaaprobe[i]['estado'] = EstadoMateria.YaAprobe;
             }
 
-            this.lista_materias = this.lista_materias.filter(x => !x['aprobada']);
+            // this.lista_materias = this.lista_materias.filter(x => !x['aprobada']);
+            this.lista_materias = this.lista_materias.filter(x => x['estado'] != 'yaaprobe');
         }
 
         /*
@@ -188,7 +190,8 @@ export class EncuestaService {
             body['legajo'] = this.legajo;
             console.log(body);
             console.log(this.token);
-            const req = this.http.post('http://localhost:8000/api/encuesta/' + this.token, body);
+            // const req = this.http.post('http://localhost:8000/api/encuesta/' + this.token, body);
+            const req = this.http.put('http://localhost:8000/api/encuesta/' + this.token, body);
             // const req = this.http.post('https://arq-sof-encuesta-backend.herokuapp.com/api/encuesta', body);
             req.subscribe();
         }

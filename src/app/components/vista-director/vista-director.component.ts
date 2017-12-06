@@ -65,7 +65,7 @@ export class VistaDirectorComponent implements OnInit {
         var alumnosRespondieron = this.utilidadesService.getMateriasOrdenadasPorSaturacion().subscribe(
             data => {
                 this.materiasOrdenadasPorSaturacion = data;
-                console.log(data);
+                // console.log(data);
             }
 
         );

@@ -48,7 +48,6 @@ export class ExpansionComponent implements OnInit {
     }
 
   constructor(private encuestaService: EncuestaService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-
   }
 
 
