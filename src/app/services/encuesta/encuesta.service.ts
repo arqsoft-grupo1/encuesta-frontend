@@ -103,9 +103,10 @@ export class EncuestaService {
         }
 
         setListaMaterias($materias) {
+            // console.log("mmmm raro");
             this.lista_materias = $materias;
             this.acomodarListasdeMaterias();
-            this.setEstadoMateriasRestantes();
+            // this.setEstadoMateriasRestantes();
 
         }
 
@@ -115,7 +116,13 @@ export class EncuestaService {
         private setEstadoMateriasRestantes() {
             for(var i = 0; i < this.lista_materias.length; i++) {
                 console.log(this.lista_materias[i]['estado']);
-                if (this.lista_materias[i]['estado'] == 'nopuedohorario') {
+                if (this.lista_materias[i]['estado'] === 'yaaprobe') {
+                    this.lista_materias[i]['estado'] = EstadoMateria.YaAprobe;
+                };
+                if (this.lista_materias[i]['estado'] === 'voyacursar') {
+                    this.lista_materias[i]['estado'] = EstadoMateria.VoyACursar;
+                };
+                if (this.lista_materias[i]['estado'] === 'nopuedohorario') {
                     this.lista_materias[i]['estado'] = EstadoMateria.NoPuedoPorHorario;
                 } else {
                     this.lista_materias[i]['estado'] = EstadoMateria.TodaviaNo;
@@ -123,22 +130,27 @@ export class EncuestaService {
             }
         }
 
-
-
         private acomodarListasdeMaterias() {
             this.filtrarAprobadas();
             this.generarMateriasSugeridas();
         }
 
         private filtrarAprobadas() {
-            // this.materias_yaaprobe = this.lista_materias.filter(x => x['aprobada']);
-            this.materias_yaaprobe = this.lista_materias.filter(x => x['estado'] == 'yaaprobe');
-            for(var i = 0; i < this.materias_yaaprobe.length; i++) {
-                this.materias_yaaprobe[i]['estado'] = EstadoMateria.YaAprobe;
-            }
+            this.materias_aprobadas = this.lista_materias.filter(mat => mat['estado'] == 'yaaprobe');
+            console.log("Aprobadas " +  this.materias_aprobadas.length);
+            this.lista_materias = this.lista_materias.filter(mat => mat['estado'] != 'yaaprobe');
+            console.log("Restantes  " +  this.lista_materias.length);
 
-            // this.lista_materias = this.lista_materias.filter(x => !x['aprobada']);
-            this.lista_materias = this.lista_materias.filter(x => x['estado'] != 'yaaprobe');
+            // // this.materias_yaaprobe = this.lista_materias.filter(x => x['aprobada']);
+            // this.materias_yaaprobe = this.lista_materias.filter(x => x['estado'] === 'yaaprobe');
+            // // console.log("aprobadas" + this.materias_yaaprobe + "cantt" + this.materias_yaaprobe.length);
+            // for(var i = 0; i < this.materias_yaaprobe.length; i++) {
+            //     this.materias_yaaprobe[i]['estado'] = EstadoMateria.YaAprobe;
+            // }
+            //
+            // // this.lista_materias = this.lista_materias.filter(x => !x['aprobada']);
+            // this.lista_materias = this.lista_materias.filter(x => x['estado'] != 'yaaprobe');
+            // console.log("no aprobadas" + this.lista_materias + "cantt" + this.lista_materias.length );
         }
 
         /*
@@ -148,11 +160,28 @@ export class EncuestaService {
         */
         generarMateriasSugeridas() {
             var tmp_sugeridas = [];
-            for(var i = 0; i<5; i++) {
-                tmp_sugeridas.push(this.lista_materias[i]);
+            for(var i = 0; i < 5; i++){
+                tmp_sugeridas = [...tmp_sugeridas, this.lista_materias[i]];
+                this.lista_materias.splice(this.lista_materias.indexOf(this.lista_materias[i]), 1);
             }
-            this.agregarMateriasSugeridas(tmp_sugeridas);
+            this.materias_sugeridas = tmp_sugeridas;
         }
+
+
+
+
+
+
+
+
+
+
+            // var tmp_sugeridas = [];
+            // for(var i = 0; i<5; i++) {
+            //     tmp_sugeridas.push(this.lista_materias[i]);
+            // }
+            // this.agregarMateriasSugeridas(tmp_sugeridas);
+        //}
         /*
             Si ya existe dentro de las materias sugeridas no la toma en cuenta
             Tampoco la toma en cuenta si es correlativa pero ya esta aprobada
@@ -160,22 +189,24 @@ export class EncuestaService {
             la saca de la lista de materias restantes.
         */
         agregarMateriasSugeridas(materias_sug) {
-            for(var i = 0; i<materias_sug.length; i++) {
-                if (!(this.existeMateriaSugeridaYa(materias_sug[i]['id']))) {
-                    // materias_sug[i]['estado'] = EstadoMateria.VoyACursar;
-                    this.materias_sugeridas.push(materias_sug[i]);
-                    // Quito la materia de la lista de materias generales para que no este duplicada
-                    this.eliminarMateriaDeMateriasGenerales(materias_sug[i]['id']);
+            if (this.materias_sugeridas.length == 0) {
+                for(var i = 0; i<materias_sug.length; i++) {
+                    if (!(this.existeMateriaSugeridaYa(materias_sug[i]['nombre']))) {
+                        // materias_sug[i]['estado'] = EstadoMateria.VoyACursar;
+                        this.materias_sugeridas.push(materias_sug[i]);
+                        // Quito la materia de la lista de materias generales para que no este duplicada
+                        this.eliminarMateriaDeMateriasGenerales(materias_sug[i]['nombre']);
+                    }
                 }
             }
         }
 
         existeMateriaSugeridaYa(materiaId) {
-            return this.materias_sugeridas.some(x => x['id'] === materiaId);
+            return this.materias_sugeridas.some(x => x['nombre'] === materiaId);
         }
 
-        eliminarMateriaDeMateriasGenerales(materiaId) {
-            this.lista_materias = this.lista_materias.filter(x => x['id'] !== materiaId);
+        eliminarMateriaDeMateriasGenerales(materiaNombre) {
+            this.lista_materias = this.lista_materias.filter(x => x['nombre'] !== materiaNombre);
         }
 
         getMateriasSugeridas(){
@@ -193,9 +224,9 @@ export class EncuestaService {
             curso el estado correspondiente
         */
         private generarMateriasPorEstado(estadoMateria: EstadoMateria) {
-            var tmp = this.lista_materias.filter(x => x['estado'] == estadoMateria);
-            var tmp2 = this.materias_sugeridas.filter(x => x['estado'] == estadoMateria);
-            var tmp3 = this.materias_yaaprobe.filter(x => x['estado'] == estadoMateria);
+            var tmp = this.lista_materias.filter(x => x['estado'] === estadoMateria);
+            var tmp2 = this.materias_sugeridas.filter(x => x['estado'] === estadoMateria);
+            var tmp3 = this.materias_yaaprobe.filter(x => x['estado'] === estadoMateria);
             var tmp_materias = (tmp.concat(tmp2)).concat(tmp3);
 
             return tmp_materias;
