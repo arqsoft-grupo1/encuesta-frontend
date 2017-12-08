@@ -1,32 +1,17 @@
+<!-- <mat-card style="width:40%"> -->
 <Header></Header>
-<mat-card>
-    <div class="example-container">
-        <mat-form-field>
-            <input matInput placeholder="Email" [(ngModel)]="email">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Legajo" [(ngModel)]="legajo">
-        </mat-form-field>
-    </div>
-    <button mat-button (click)=login()>Login</button>
-
-
-    <!-- <div *ngIf=(esDirector) class="center-div">
-        <p>asdadasdad</p>
-        <ol>
-            <li>
-              <mat-form-field>
-                <input matInput [(ngModel)]="name" placeholder="What's your name?">
-              </mat-form-field>
-            </li>
-            <li>
-              <button mat-raised-button (click)="openDialog()">Pick one</button>
-            </li>
-            <li *ngIf="animal">
-              You chose: <i>{{animal}}</i>
-            </li>
-      </ol>
-    </div> -->
-
-
-</mat-card>
+<mat-grid-list cols="2" rows="2">
+      <mat-grid-tile [colspan]="2" [rowspan]="0.25">
+        <mat-card class="mat-card-position">
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput placeholder="Email" [(ngModel)]="email">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Legajo" [(ngModel)]="legajo">
+            </mat-form-field>
+        </div>
+        <button mat-button (click)=login()>Login</button>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
