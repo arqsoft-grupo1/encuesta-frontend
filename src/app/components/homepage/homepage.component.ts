@@ -4,6 +4,7 @@ import { UtilidadesService } from '../../services/utilidades.service';
 import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Director } from '../../model/director'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'Homepage',
@@ -17,23 +18,34 @@ export class HomepageComponent implements OnInit {
 
     esDirector = false;
 
+    director;
 
+    passwordInput: string;
 
     // animal: string;
-    // name: string;
 
-    constructor(private router: Router, private utilidadesService: UtilidadesService, private http: HttpClient, public dialog: MatDialog) { }
+    value: string;
+
+    constructor(private router: Router, private utilidadesService: UtilidadesService, private http: HttpClient, public dialog: MatDialog, public snackBar: MatSnackBar) { }
 
     ngOnInit() {
     }
 
     openDialog(): void {
       let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-        width: '250px'
+        width: '250px',
+        data: {animal: this.passwordInput }
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+          if(result == this.director['password']){
+              this.router.navigate(['/vista-director/']);
+          } else {
+              this.snackBar.open("Contraseña incorrecta", "", {
+              duration: 3000,
+              });
+          }
+        // console.log('The dialog was closed');
       });
     }
 
@@ -41,8 +53,9 @@ export class HomepageComponent implements OnInit {
         this.utilidadesService.getDirector(this.email).subscribe(
             data => {
                 this.esDirector = true;
-                // this.openDialog();
-                this.router.navigate(['/vista-director/']);
+                this.director = data;
+                this.openDialog();
+                // this.router.navigate(['/vista-director/']);
             },
             err => {
                 this.router.navigate(['/encuesta/' + this.legajo + '/' + this.email]);

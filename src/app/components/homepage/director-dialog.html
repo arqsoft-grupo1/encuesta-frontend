@@ -1,1 +1,7 @@
-<p>AAAAA</p>
+<mat-form-field class="example-full-width">
+    <input matInput placeholder="Contraseña" [(ngModel)]="data.passwordInput">
+</mat-form-field>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.passwordInput">Aceptar</button>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+</div>
