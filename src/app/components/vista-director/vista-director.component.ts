@@ -36,7 +36,7 @@ export class VistaDirectorComponent implements OnInit {
     }
 
     getValue(comision){
-        return ((comision.inscriptos.length) * 100) / comision.cupo;
+        return (((comision.inscriptos.length) * 100) / comision.cupo).toFixed(2);
     }
 
     getColor(comision){
@@ -48,6 +48,32 @@ export class VistaDirectorComponent implements OnInit {
             }
         }
         return "primary";
+    }
+
+    getNombre(comision){
+        switch(comision.nombre) {
+           case "C1": {
+              return 'Comision 1';
+           }
+           case "C2": {
+              return 'Comision 2';
+           }
+           case "C3": {
+              return 'Comision 3';
+           }
+           case "C4": {
+                return 'Comision 4';
+           }
+           case "C5": {
+                return 'Comision 5';
+           }
+           case "C6": {
+                return 'Comision 6';
+           }
+           default: {
+              return 'Comision';
+           }
+        }
     }
 
     setStep(index: number) {

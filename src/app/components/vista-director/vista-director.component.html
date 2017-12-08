@@ -17,6 +17,12 @@
     <div fxFlex="100%">
         <div fxFlex="60%" class="divExpansion">
             <mat-card >
+                <mat-card-header>
+                    <div mat-card-avatar class="material-icons">school</div>
+                    <mat-card-title>Materias</mat-card-title>
+                    <mat-card-subtitle>Ordenadas por saturación de comision</mat-card-subtitle>
+              </mat-card-header>
+               <hr>
                 <mat-accordion class="expansion" *ngFor="let materia of materiasOrdenadasPorSaturacion; let i = index" [attr.data-index]="i">
                   <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle="true">
                     <mat-expansion-panel-header>
@@ -40,15 +46,24 @@
                       </table>
                     </mat-expansion-panel-header>
                     <mat-list>
-                      <h3 mat-subheader>Comisiones</h3>
+                      <!-- <h3 mat-subheader>Comisiones</h3> -->
                       <mat-list-item *ngFor="let comision of materia.comisiones">
-                              {{comision.nombre}} Alumnos inscriptos: {{comision.inscriptos.length}}
-                                <mat-progress-bar
-                                    class="example-margin"
-                                    [color]="getColor(comision)"
-                                    [mode]="mode"
-                                    [value]="getValue(comision)">
-                                </mat-progress-bar>
+                              <h4 mat-line fxLayoutAlign="space-between center">
+                                  {{getNombre(comision)}} - Cantidad insciptos: {{comision.inscriptos.length}}
+                                  <strong>{{getValue(comision)}}%</strong>
+                              </h4>
+                              <p mat-line>
+                                  <br>
+                              </p>
+                              <p mat-line>
+                                  <mat-progress-bar
+                                      class="example-margin"
+                                      [color]="getColor(comision)"
+                                      [mode]="mode"
+                                      [value]="getValue(comision)">
+                                  </mat-progress-bar>
+                                  </p>
+                                  <mat-divider></mat-divider>
                       </mat-list-item>
                   </mat-list>
                     <mat-action-row>
