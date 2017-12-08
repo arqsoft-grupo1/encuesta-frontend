@@ -47,14 +47,14 @@ export class ResumenInscriptasComponent implements OnInit {
     }
 
     borrarMateriaResumen(materia){
-      this.snackBar.open("Materia Eliminada", this.cancelarMateriaBorrada(), {
+      this.snackBar.open("Materia Eliminada", "", {
         duration: 3000,
       });
       this.seleccion.splice(this.seleccion.indexOf(materia), 1);
     }
 
-    cancelarMateriaBorrada(){
-      return "Cancelar";
+    cancelarMateriaBorrada(materia){
+        return "Cancelar";
     }
 
     ngOnInit() {
