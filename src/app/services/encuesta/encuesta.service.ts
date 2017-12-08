@@ -103,9 +103,15 @@ export class EncuestaService {
         */
         private setEstadoMateriasRestantes() {
             for(var i = 0; i < this.lista_materias.length; i++) {
-                this.lista_materias[i]['estado'] = EstadoMateria.TodaviaNo;
+                console.log(this.lista_materias[i]['estado']);
+                if (this.lista_materias[i]['estado'] == 'nopuedohorario') {
+                    this.lista_materias[i]['estado'] = EstadoMateria.NoPuedoPorHorario;
+                } else {
+                    this.lista_materias[i]['estado'] = EstadoMateria.TodaviaNo;
+                }
             }
         }
+
 
 
         private acomodarListasdeMaterias() {
