@@ -59,6 +59,23 @@ export class ListaOfertaComponent implements OnInit {
         return this.materias_aprobadas.some(x => x['id'] === materiaId);
     }
 
+    getMateriasSugeridas(){
+        if(this.materias_sugeridas != undefined){
+            return this.materias_sugeridas.length;
+        }
+    }
+
+    getMateriasAprobadas(){
+        if(this.materias_aprobadas != undefined){
+            return this.materias_aprobadas.length;
+        }
+    }
+
+    getRestoMaterias(){
+        if(this.materias != undefined){
+            return this.materias.length;
+        }
+    }
 
 
     ngOnInit() {

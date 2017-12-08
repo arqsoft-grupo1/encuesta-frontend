@@ -3,7 +3,7 @@
 </div>
 <mat-horizontal-stepper>
   <mat-step>
-      <ng-template matStepLabel>Materias aprobadas</ng-template>
+      <ng-template matStepLabel>Materias aprobadas({{getMateriasAprobadas()}})</ng-template>
         <div>
             <mat-card>
                 <Expansion [materias]="materias_aprobadas"></Expansion>
@@ -13,7 +13,7 @@
         </div>
   </mat-step>
   <mat-step>
-      <ng-template matStepLabel>Materias sugeridas</ng-template>
+      <ng-template matStepLabel>Materias sugeridas({{getMateriasSugeridas()}})</ng-template>
     <div>
         <mat-card>
             <Expansion [materias]="materias_sugeridas"></Expansion>
@@ -23,7 +23,7 @@
     </div>
   </mat-step>
   <mat-step>
-      <ng-template matStepLabel>Resto materias</ng-template>
+      <ng-template matStepLabel>Resto materias({{getRestoMaterias()}})</ng-template>
     <mat-card>
         <Expansion [materias]="materias"></Expansion>
     </mat-card>
