@@ -20,10 +20,10 @@ export class ResumenInscriptasComponent implements OnInit {
 
     enviarEncuesta() {
         this.encuestaService.postEncuesta();
-        this.snackBar.open("Encuesta enviada", this.cancelarEnvioEncuesta(), {
+        this.snackBar.open("Encuesta enviada", "", {
         duration: 3000,
         });
-        // this.router.navigateByUrl('/homepage');
+        this.router.navigateByUrl('/homepage');
     }
 
     armarEncuesta(){

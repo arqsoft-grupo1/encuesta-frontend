@@ -47,8 +47,19 @@ export class EncuestaService {
           * Evitar hacer this.user.push() pues estaríamos modificando los valores directamente,
           * se debe generar un nuevo array !!!!.
           */
-          this.materias_a_cursar = [...this.materias_a_cursar, materia];
-          this.refresh();
+            if(!this.existeMateriaEnMateriasACursar(materia)){
+                this.materias_a_cursar = [...this.materias_a_cursar, materia];
+                this.refresh();
+            }
+        }
+
+        existeMateriaEnMateriasACursar(materia: Materia){
+            for(var i = 0; i < this.materias_a_cursar.length; i++){
+                if(this.materias_a_cursar[i].nombre == materia.nombre){
+                    return true;
+                }
+            }
+            return false;
         }
 
         borrarMateria(materia: Materia) {
