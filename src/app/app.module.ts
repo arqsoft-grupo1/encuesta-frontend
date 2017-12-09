@@ -28,7 +28,7 @@ import { ChartsModule } from 'ng2-charts';
 const appRoutes: Routes = [
     {path: 'homepage',
      component: HomepageComponent},
-    {path: 'encuesta/:legajo/:mail',
+    {path: 'encuesta/:token',
      component: DetalleEncuestaComponent},
      {path: '',
       redirectTo: '/homepage',
@@ -49,7 +49,7 @@ const appRoutes: Routes = [
     HomepageComponent,
     DialogOverviewExampleDialog,
     DetalleEncuestaComponent,
-    VistaDirectorComponent
+    VistaDirectorComponent,
   ],
   entryComponents: [DialogOverviewExampleDialog],
   imports: [

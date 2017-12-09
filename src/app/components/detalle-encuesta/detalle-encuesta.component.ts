@@ -22,8 +22,11 @@ export class DetalleEncuestaComponent {
 
     ngOnInit() {
         this.sub = this.route.params.subscribe(
-            params => {this.encuestaService.setLegajo(+params['legajo']);
-
+            params => {
+                console.log(params['token']);
+                this.encuestaService.setToken(params['token']),
+                this.encuestaService.setLegajoByToken()
+                // this.encuestaService.setLegajo
         });
         this.materias$ = this.encuestaService.getMaterias();
     }

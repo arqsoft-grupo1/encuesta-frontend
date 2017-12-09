@@ -6,7 +6,7 @@ export class Encuesta {
     private materias_aprobadas: MateriaEncuesta[];
     private materias_nopuedoporhorario: MateriaEncuesta[]
     constructor(
-        public legajo: number,
+        public token: string,
     ) {}
 
  setMateriasACursar(materias_a_cursar) {

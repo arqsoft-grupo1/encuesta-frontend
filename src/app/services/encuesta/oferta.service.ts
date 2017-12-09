@@ -12,7 +12,7 @@ interface ItemsResponse {
 
 @Injectable()
 export class OfertaService {
-    prueba;
+    // prueba;
     constructor(private http: HttpClient) {
 
     }
@@ -21,10 +21,10 @@ export class OfertaService {
 
     }
 
-    getOferta(email) {
+    getOferta(token) {
             // ruta heroku
             // return this.http.get<Oferta>('https://arq-sof-encuesta-backend.herokuapp.com/api/oferta/' + email);
-            return this.http.get<Oferta>('http://localhost:8000/api/oferta/' + email);
+            return this.http.get<Oferta>('http://localhost:8000/api/oferta/' + token);
     }
 
 }

@@ -24,6 +24,22 @@ export class EncuestaService {
 
         constructor(private http: HttpClient) { }
 
+        getAlumnoByToken(token) {
+            // console.log('http://localhost:8000/api/alumno/' + token);
+            return this.http.get('http://localhost:8000/api/alumno/' + token);
+        }
+
+        postEncuesta() {
+            var encuesta: Encuesta = this.generarEncuesta();
+            const body = encuesta.getMaterias();
+            body['legajo'] = this.legajo
+            console.log("tokeeeeeen: ")
+            console.log(this.token);
+            // const req = this.http.post('http://localhost:8000/api/encuesta/' + this.token, body);
+            const req = this.http.put('http://localhost:8000/api/encuesta/' + this.token, body);
+            // const req = this.http.post('https://arq-sof-encuesta-backend.herokuapp.com/api/encuesta', body);
+            req.subscribe();
+        }
 
         setLegajo(legajo){
             this.legajo = legajo;
@@ -31,6 +47,19 @@ export class EncuestaService {
 
         setToken(token) {
             this.token = token;
+
+
+        }
+
+        setLegajoByToken() {
+            this.getAlumnoByToken(this.token).subscribe(
+                data => {
+                    this.legajo = data['legajo'];
+                },
+                err => {
+                    console.log("No se pudo traer el alumno");
+                }
+            );
         }
         // Estas materias se usan desde dos componentes distintos //
         getMaterias(): Observable<Materia[]> {
@@ -94,6 +123,10 @@ export class EncuestaService {
             return this.materias_yaaprobe;
         }
 
+        getMateriasAprobadas() {
+            return this.materias_aprobadas;
+        }
+
         getMateriasNoPuedoPorHorario() {
             return this.materias_no_puedohorario;
         }
@@ -115,6 +148,7 @@ export class EncuestaService {
         */
         private setEstadoMateriasRestantes() {
             for(var i = 0; i < this.lista_materias.length; i++) {
+                console.log("Pasa por aca");
                 console.log(this.lista_materias[i]['estado']);
                 if (this.lista_materias[i]['estado'] === 'yaaprobe') {
                     this.lista_materias[i]['estado'] = EstadoMateria.YaAprobe;
@@ -130,27 +164,22 @@ export class EncuestaService {
             }
         }
 
+
+
         private acomodarListasdeMaterias() {
             this.filtrarAprobadas();
             this.generarMateriasSugeridas();
+            console.log("Aprobadas ");
+            console.log(this.materias_aprobadas);
+            console.log("Sugeridas");
+            console.log(this.materias_sugeridas);
+            console.log("Restantes");
+            console.log(this.lista_materias);
         }
 
         private filtrarAprobadas() {
             this.materias_aprobadas = this.lista_materias.filter(mat => mat['estado'] == 'yaaprobe');
-            console.log("Aprobadas " +  this.materias_aprobadas.length);
             this.lista_materias = this.lista_materias.filter(mat => mat['estado'] != 'yaaprobe');
-            console.log("Restantes  " +  this.lista_materias.length);
-
-            // // this.materias_yaaprobe = this.lista_materias.filter(x => x['aprobada']);
-            // this.materias_yaaprobe = this.lista_materias.filter(x => x['estado'] === 'yaaprobe');
-            // // console.log("aprobadas" + this.materias_yaaprobe + "cantt" + this.materias_yaaprobe.length);
-            // for(var i = 0; i < this.materias_yaaprobe.length; i++) {
-            //     this.materias_yaaprobe[i]['estado'] = EstadoMateria.YaAprobe;
-            // }
-            //
-            // // this.lista_materias = this.lista_materias.filter(x => !x['aprobada']);
-            // this.lista_materias = this.lista_materias.filter(x => x['estado'] != 'yaaprobe');
-            // console.log("no aprobadas" + this.lista_materias + "cantt" + this.lista_materias.length );
         }
 
         /*
@@ -166,21 +195,11 @@ export class EncuestaService {
             }
             this.materias_sugeridas = tmp_sugeridas;
         }
-
-
-
-
-
-
-
-
-
-
-            // var tmp_sugeridas = [];
-            // for(var i = 0; i<5; i++) {
-            //     tmp_sugeridas.push(this.lista_materias[i]);
-            // }
-            // this.agregarMateriasSugeridas(tmp_sugeridas);
+        // var tmp_sugeridas = [];
+        // for(var i = 0; i<5; i++) {
+        //     tmp_sugeridas.push(this.lista_materias[i]);
+        // }
+        // this.agregarMateriasSugeridas(tmp_sugeridas);
         //}
         /*
             Si ya existe dentro de las materias sugeridas no la toma en cuenta
@@ -224,31 +243,24 @@ export class EncuestaService {
             curso el estado correspondiente
         */
         private generarMateriasPorEstado(estadoMateria: EstadoMateria) {
+            var tmp3 = this.materias_yaaprobe.filter(x => x['estado'] === estadoMateria);
             var tmp = this.lista_materias.filter(x => x['estado'] === estadoMateria);
             var tmp2 = this.materias_sugeridas.filter(x => x['estado'] === estadoMateria);
-            var tmp3 = this.materias_yaaprobe.filter(x => x['estado'] === estadoMateria);
             var tmp_materias = (tmp.concat(tmp2)).concat(tmp3);
 
             return tmp_materias;
         }
 
-        postEncuesta() {
-            var encuesta: Encuesta = this.generarEncuesta();
-            const body = encuesta.getMaterias();
-            body['legajo'] = this.legajo;
-            console.log(body);
-            console.log(this.token);
-            // const req = this.http.post('http://localhost:8000/api/encuesta/' + this.token, body);
-            const req = this.http.put('http://localhost:8000/api/encuesta/' + this.token, body);
-            // const req = this.http.post('https://arq-sof-encuesta-backend.herokuapp.com/api/encuesta', body);
-            req.subscribe();
-        }
 
         private generarEncuesta(): Encuesta {
             this.generarMateriasParaEncuesta();
             var encuesta: Encuesta = new Encuesta(this.legajo);
             encuesta.setMateriasACursar(this.materias_a_cursar);
-            encuesta.setMateriasAprobadas(this.materias_yaaprobe);
+            console.log("Aprobdas");
+            console.log(this.materias_aprobadas);
+            console.log("Ya Aprobe");
+            console.log(this.materias_yaaprobe);
+            encuesta.setMateriasAprobadas(this.materias_yaaprobe.concat(this.materias_aprobadas));
             encuesta.setMateriasTodaviaNo(this.materias_todavia_no);
             encuesta.setMateriasNoPuedoPorHorario(this.materias_no_puedohorario);
 

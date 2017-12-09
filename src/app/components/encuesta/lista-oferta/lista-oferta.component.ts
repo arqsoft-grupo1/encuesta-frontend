@@ -21,6 +21,7 @@ export class ListaOfertaComponent implements OnInit {
     materias;
     materias_sugeridas;
     materias_aprobadas;
+    token;
     loading = true;
     // private materias$: Observable<any[]>;
 
@@ -33,31 +34,45 @@ export class ListaOfertaComponent implements OnInit {
                   duplicada.
     */
     constructor(private route: ActivatedRoute, private encuestaService: EncuestaService, private ofertaService: OfertaService) {
-        this.route.params.subscribe( params =>
-            this.mail = params['mail']
-         );
-        ofertaService.getOferta(this.mail).subscribe(
+        this.route.params.subscribe( params => {
+            this.token = params['token'],
+            encuestaService.getAlumnoByToken(this.token).subscribe(
+                data => {
+                    // console.log(this.token);
+                    console.log("El alumno:");
+                    // console.log(data['mail']);
+                    this.mail = data['mail'];
+                    console.log(this.mail);
+                },
+                err => {
+                    console.log(this.token);
+                    console.log(err);
+                    console.log("No se pudo traer el alumno");
+                }
+            );
+        })
+
+        ofertaService.getOferta(this.token).subscribe(
             data => {
-                  console.log(data['token']);
-                  encuestaService.setToken(data['token']);
+                  encuestaService.setToken(this.token);
                   this.oferta = new Oferta(data['oferta']);
                   encuestaService.setListaMaterias(this.oferta.getMaterias());
-
                   this.materias_sugeridas = encuestaService.getMateriasSugeridas();
-                  this.materias_aprobadas = encuestaService.getMateriasYaAprobe();
+                  this.materias_aprobadas = encuestaService.getMateriasAprobadas();
+                //   console.log(this.materias_aprobadas);
                   this.materias = encuestaService.getListaMaterias();
 
                   this.loading = false;
             },
             err => {
-                console.log("No se pudo traer la informacion de la oferta, intente nuevamente")
+                console.log(err + "No se pudo traer la informacion de la oferta, intente nuevamente")
             }
         );
     }
 
-    tieneMateriaAprobada(materiaId) {
-        return this.materias_aprobadas.some(x => x['id'] === materiaId);
-    }
+    // tieneMateriaAprobada(materiaId) {
+    //     return this.materias_aprobadas.some(x => x['id'] === materiaId);
+    // }
 
     getMateriasSugeridas(){
         if(this.materias_sugeridas != undefined){
@@ -69,6 +84,7 @@ export class ListaOfertaComponent implements OnInit {
         if(this.materias_aprobadas != undefined){
             return this.materias_aprobadas.length;
         }
+
     }
 
     getRestoMaterias(){
