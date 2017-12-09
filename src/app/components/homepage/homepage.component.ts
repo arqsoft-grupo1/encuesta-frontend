@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilidadesService } from '../../services/utilidades.service';
+import { OfertaService } from '../../services/encuesta/oferta.service';
 import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Director } from '../../model/director'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -26,7 +27,7 @@ export class HomepageComponent implements OnInit {
 
     value: string;
 
-    constructor(private router: Router, private utilidadesService: UtilidadesService, private http: HttpClient, public dialog: MatDialog, public snackBar: MatSnackBar) { }
+    constructor(private router: Router, private ofertaService: OfertaService ,private utilidadesService: UtilidadesService, private http: HttpClient, public dialog: MatDialog, public snackBar: MatSnackBar) { }
 
     ngOnInit() {
     }
@@ -58,8 +59,12 @@ export class HomepageComponent implements OnInit {
                 // this.router.navigate(['/vista-director/']);
             },
             err => {
-                this.router.navigate(['/encuesta/' + this.legajo + '/' + this.email]);
-                console.log("No hay director")
+
+                //  console.log(this.email);
+                this.ofertaService.sendMailToken(this.email);
+                this.email = '';
+                this.snackBar.open('URL de la encuesta, enviada al mail', '', {duration: 3000});
+                // this.router.navigate(['/encuesta/' + this.legajo + '/' + this.email]);
             }
       );
     }
