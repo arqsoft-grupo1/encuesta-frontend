@@ -12,7 +12,7 @@ interface ItemsResponse {
 
 @Injectable()
 export class OfertaService {
-    ruta = 'http://localhost:8000/api/oferta';
+    ruta = 'https://arq-sof-encuesta-backend.herokuapp.com/api/oferta';
     constructor(private http: HttpClient) {
     }
 

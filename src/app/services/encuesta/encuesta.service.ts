@@ -23,7 +23,7 @@ export class EncuestaService {
         constructor(private http: HttpClient) { }
 
         getAlumnoByToken(token) {
-            return this.http.get('http://localhost:8000/api/alumno/' + token);
+            return this.http.get('https://arq-sof-encuesta-backend.herokuapp.com/api/alumno/' + token);
         }
 
         postEncuesta() {
@@ -32,7 +32,7 @@ export class EncuestaService {
             body['legajo'] = this.legajo
             console.log("tokeeeeeen: ")
             console.log(this.token);
-            const req = this.http.put('http://localhost:8000/api/encuesta/' + this.token, body);
+            const req = this.http.put('https://arq-sof-encuesta-backend.herokuapp.com/api/encuesta/' + this.token, body);
             req.subscribe();
         }
 

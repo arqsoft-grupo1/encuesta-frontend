@@ -10,15 +10,15 @@ export class UtilidadesService {
   director;
 
   getDirector(email) {
-      return this.http.get<Director>('http://localhost:8000/api/director/' + email);
+      return this.http.get<Director>('https://arq-sof-encuesta-backend.herokuapp.com/api/director/' + email);
   }
 
   getEncuestasRespondidas(){
-      return this.http.get('http://localhost:8000/api/encuesta/porcentaje_respuestas');
+      return this.http.get('https://arq-sof-encuesta-backend.herokuapp.com/api/encuesta/porcentaje_respuestas');
   }
 
   getMateriasOrdenadasPorSaturacion(){
-      return this.http.get('http://localhost:8000/api/materia/');
+      return this.http.get('https://arq-sof-encuesta-backend.herokuapp.com/api/materia/');
   }
 
 }

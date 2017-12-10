@@ -13,6 +13,7 @@ exports.config = {
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
+  // baseUrl: 'https://arq-soft-encuesta-frontend.herokuapp.com',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
