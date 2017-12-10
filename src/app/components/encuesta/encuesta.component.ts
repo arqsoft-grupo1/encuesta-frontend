@@ -1,5 +1,4 @@
 import {Component, ViewChild} from '@angular/core';
-// import {Component} from '@angular/core';
 import {DataSource} from '@angular/cdk/collections';
 import {MatPaginator} from '@angular/material';
 import {Observable} from 'rxjs/Observable';
@@ -8,16 +7,15 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
-// import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { OfertaService } from "../../services/encuesta/oferta.service";
 import { Oferta } from "../../model/oferta";
-// import { MatExpansionModule } from '@angular/material';
 
 @Component({
   selector: 'Encuesta',
   templateUrl: './encuesta.component.html',
   styleUrls: ['./encuesta.component.css']
 })
+
 export class EncuestaComponent {
     displayedColumns = ['id', 'nombre', 'orden'];
     dataSource: ExampleDataSource | null;
@@ -29,17 +27,6 @@ export class EncuestaComponent {
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     constructor(private ofertaService: OfertaService) { }
-
-    // ngOnInit() {
-    // //this.dataSource = new ExampleDataSource(data, this.paginator);
-    //     this.ofertaService.getOferta().subscribe(
-    //         oferta => {
-    //             // console.log(oferta['oferta']);
-    //             this.dataSource = new ExampleDataSource(oferta['oferta'], this.paginator);
-    //         }
-    //     );
-    // }
-
 }
 
 export class ExampleDataSource extends DataSource<any> {
@@ -57,8 +44,6 @@ export class ExampleDataSource extends DataSource<any> {
 
        return Observable.merge(...displayDataChanges).map(() => {
          const data = this.data.slice();
-
-         // Grab the page's slice of data.
          const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
          return data.splice(startIndex, this._paginator.pageSize);
        });

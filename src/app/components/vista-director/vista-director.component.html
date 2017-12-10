@@ -46,7 +46,6 @@
                       </table>
                     </mat-expansion-panel-header>
                     <mat-list>
-                      <!-- <h3 mat-subheader>Comisiones</h3> -->
                       <mat-list-item *ngFor="let comision of materia.comisiones">
                               <h4 mat-line fxLayoutAlign="space-between center">
                                   {{getNombre(comision)}} - Cantidad insciptos: {{comision.inscriptos.length}}
@@ -86,9 +85,7 @@
                     <canvas baseChart
                                 [data]="doughnutChartData"
                                 [labels]="doughnutChartLabels"
-                                [chartType]="doughnutChartType"
-                                (chartHover)="chartHovered($event)"
-                                (chartClick)="chartClicked($event)">
+                                [chartType]="doughnutChartType">
                     </canvas>
                 </div>
               </mat-card-content>

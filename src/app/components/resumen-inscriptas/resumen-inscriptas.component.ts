@@ -9,13 +9,11 @@ import { Router } from '@angular/router';
   selector: 'Resumen-inscriptas',
   templateUrl: './resumen-inscriptas.component.html',
   styleUrls: ['./resumen-inscriptas.component.css']
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResumenInscriptasComponent implements OnInit {
     @Input() seleccion;
 
     constructor(private router: Router, public encuestaService: EncuestaService, public snackBar: MatSnackBar) {
-
     }
 
     enviarEncuesta() {
@@ -59,5 +57,4 @@ export class ResumenInscriptasComponent implements OnInit {
 
     ngOnInit() {
     }
-
 }

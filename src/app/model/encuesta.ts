@@ -48,8 +48,6 @@ export class Encuesta {
       materias["materias_aprobadas"] = this.getMateriasAprobadas();
       materias["materias_todaviano"] = this.getMateriasTodaviaNo();
       materias["materias_no_puedoporhorario"] = this.getMateriasNoPuedoPorHorario();
-
-    //   console.log(materias);
       return materias;
   }
 }

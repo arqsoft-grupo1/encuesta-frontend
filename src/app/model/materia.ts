@@ -6,20 +6,4 @@ export class Materia {
       public comisiones: string[],
       public aprobada: boolean
   ) {}
-
-  getTotalInscriptos(){
-      return 22;
-  }
-
-  // getOrden() {
-  //     return this.orden;
-  // }
-  //
-  // getNombre() {
-  //     return this.nombre;
-  // }
-  //
-  // getComisiones() {
-  //   //   return this.comisiones;
-  // }
 }

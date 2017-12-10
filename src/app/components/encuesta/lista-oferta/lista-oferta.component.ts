@@ -7,7 +7,7 @@ import { Materia } from "../../../model/materia";
 import { EstadoMateria } from "../../../model/estadosMateria";
 import { MatStepLabel } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
-
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'lista-oferta',
@@ -23,7 +23,6 @@ export class ListaOfertaComponent implements OnInit {
     materias_aprobadas;
     token;
     loading = true;
-    // private materias$: Observable<any[]>;
 
     /*
         Genera 3 variables a mostrar en distintos paneles.
@@ -33,21 +32,17 @@ export class ListaOfertaComponent implements OnInit {
         materias: Es la lista de materias que no se incluyen ni aprobadas ni sugeridas, de esta manera evitar informacion
                   duplicada.
     */
-    constructor(private route: ActivatedRoute, private encuestaService: EncuestaService, private ofertaService: OfertaService) {
+    constructor(private route: ActivatedRoute, private encuestaService: EncuestaService, private ofertaService: OfertaService, public snackBar: MatSnackBar) {
         this.route.params.subscribe( params => {
             this.token = params['token'],
             encuestaService.getAlumnoByToken(this.token).subscribe(
                 data => {
-                    // console.log(this.token);
-                    console.log("El alumno:");
-                    // console.log(data['mail']);
                     this.mail = data['mail'];
-                    console.log(this.mail);
                 },
                 err => {
-                    console.log(this.token);
-                    console.log(err);
-                    console.log("No se pudo traer el alumno");
+                    this.snackBar.open("Ha ocurrido un error, por favor intente nuevamente", "", {
+                    duration: 3000,
+                    });
                 }
             );
         })
@@ -59,20 +54,16 @@ export class ListaOfertaComponent implements OnInit {
                   encuestaService.setListaMaterias(this.oferta.getMaterias());
                   this.materias_sugeridas = encuestaService.getMateriasSugeridas();
                   this.materias_aprobadas = encuestaService.getMateriasAprobadas();
-                //   console.log(this.materias_aprobadas);
                   this.materias = encuestaService.getListaMaterias();
-
                   this.loading = false;
             },
             err => {
-                console.log(err + "No se pudo traer la informacion de la oferta, intente nuevamente")
+                this.snackBar.open("Ha ocurrido un error, por favor intente nuevamente", "", {
+                duration: 3000,
+                });
             }
         );
     }
-
-    // tieneMateriaAprobada(materiaId) {
-    //     return this.materias_aprobadas.some(x => x['id'] === materiaId);
-    // }
 
     getMateriasSugeridas(){
         if(this.materias_sugeridas != undefined){
@@ -93,8 +84,6 @@ export class ListaOfertaComponent implements OnInit {
         }
     }
 
-
     ngOnInit() {
-
     }
 }

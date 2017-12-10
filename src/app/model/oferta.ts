@@ -9,8 +9,3 @@ export class Oferta {
       return this.materias;
   }
 }
-
-
-// export interface Oferta {
-//   materias: Materia[]
-// }

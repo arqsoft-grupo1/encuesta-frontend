@@ -11,7 +11,6 @@ export class HeaderComponent implements OnInit {
     year = this.date.getFullYear();
     cuatrimestre = this.getCuatrimestre();
 
-
   constructor() {
   }
 

@@ -3,8 +3,6 @@ import { OfertaService } from "../../../services/encuesta/oferta.service";
 import { EncuestaService } from '../../../services/encuesta/encuesta.service';
 import { Oferta } from "../../../model/oferta";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { MatRadioModule } from '@angular/material';
-// import { NgModule } from '@angular/core';
 import { Materia } from '../../../model/materia'
 import { EstadoMateria } from '../../../model/estadosMateria'
 import {MatIconRegistry} from '@angular/material';
@@ -17,19 +15,14 @@ import { Observable } from 'rxjs/Rx';
   styleUrls: ['./expansion.component.css']
 })
 
-
 export class ExpansionComponent implements OnInit {
     @Input() materias ;
-    // private materias$;
-
     opciones = [
         {value: EstadoMateria.YaAprobe, viewValue: 'Ya aprobé'},
         {value: EstadoMateria.TodaviaNo, viewValue: 'Todavia no'},
         {value: EstadoMateria.NoPuedoPorHorario, viewValue: 'La cursaría pero no puedo por el horario'},
         {value: EstadoMateria.VoyACursar, viewValue: 'Voy a cursar'}
     ];
-
-    // comisionElegida: string[] = [];
 
     step = 0;
 

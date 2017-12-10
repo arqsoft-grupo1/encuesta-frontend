@@ -9,19 +9,13 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 })
 export class VistaDirectorComponent implements OnInit {
 
-    // Doughnut
     public doughnutChartLabels:string[] = ['Encuestas completadas', 'Encuestas no completadas'];
     public doughnutChartData:number[] = [];
     public doughnutChartType:string = 'doughnut';
-
     public dibujarGrafico = false;
-
     public materiasOrdenadasPorSaturacion:any = [];
-
     step = 0;
-
     placeholderSelect = 'Seleccionar';
-
     color = 'primary';
     mode = 'determinate';
     value = 0;
@@ -101,15 +95,6 @@ export class VistaDirectorComponent implements OnInit {
         this.getMateriasOrdenadasPorSaturacion();
     }
 
-    // events
-    public chartClicked(e:any):void {
-      console.log(e);
-    }
-
-    public chartHovered(e:any):void {
-      console.log(e);
-    }
-
     ngOnInit() {
     }
 
@@ -128,9 +113,7 @@ export class VistaDirectorComponent implements OnInit {
         var alumnosRespondieron = this.utilidadesService.getMateriasOrdenadasPorSaturacion().subscribe(
             data => {
                 this.materiasOrdenadasPorSaturacion = data;
-                // console.log(data);
             }
-
         );
     }
 

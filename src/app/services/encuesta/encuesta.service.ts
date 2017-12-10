@@ -5,7 +5,6 @@ import { EstadoMateria } from  '../../model/estadosMateria'
 import { Encuesta } from '../../model/encuesta'
 import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 
-
 @Injectable()
 export class EncuestaService {
         legajo;
@@ -16,7 +15,6 @@ export class EncuestaService {
         private materias_todavia_no: Materia[] = [];
         private materias_no_puedohorario: Materia[] = [];
         private materias_yaaprobe: Materia[] = [];
-
         private materias_sugeridas: Materia[] = [];
         // Se agrega esta lista para tener en el servicio todas las materias con su estado //
         private lista_materias: Materia[] = [];
@@ -25,7 +23,6 @@ export class EncuestaService {
         constructor(private http: HttpClient) { }
 
         getAlumnoByToken(token) {
-            // console.log('http://localhost:8000/api/alumno/' + token);
             return this.http.get('http://localhost:8000/api/alumno/' + token);
         }
 
@@ -35,9 +32,7 @@ export class EncuestaService {
             body['legajo'] = this.legajo
             console.log("tokeeeeeen: ")
             console.log(this.token);
-            // const req = this.http.post('http://localhost:8000/api/encuesta/' + this.token, body);
             const req = this.http.put('http://localhost:8000/api/encuesta/' + this.token, body);
-            // const req = this.http.post('https://arq-sof-encuesta-backend.herokuapp.com/api/encuesta', body);
             req.subscribe();
         }
 
@@ -47,8 +42,6 @@ export class EncuestaService {
 
         setToken(token) {
             this.token = token;
-
-
         }
 
         setLegajoByToken() {
@@ -99,7 +92,6 @@ export class EncuestaService {
           console.log("Intenta borrar");
           materia['estado'] = undefined;
           this.materias_a_cursar.splice(this.materias_a_cursar.indexOf(materia), 1);
-        //   this.materias = this.materias.filter(x => x['id'] == materia['id']);
           this.refresh();
         }
 
@@ -136,11 +128,8 @@ export class EncuestaService {
         }
 
         setListaMaterias($materias) {
-            // console.log("mmmm raro");
             this.lista_materias = $materias;
             this.acomodarListasdeMaterias();
-            // this.setEstadoMateriasRestantes();
-
         }
 
         /* Las materias restantes, para evitar la seleccion se setea por defecto
@@ -163,8 +152,6 @@ export class EncuestaService {
                 }
             }
         }
-
-
 
         private acomodarListasdeMaterias() {
             this.filtrarAprobadas();
@@ -195,12 +182,6 @@ export class EncuestaService {
             }
             this.materias_sugeridas = tmp_sugeridas;
         }
-        // var tmp_sugeridas = [];
-        // for(var i = 0; i<5; i++) {
-        //     tmp_sugeridas.push(this.lista_materias[i]);
-        // }
-        // this.agregarMateriasSugeridas(tmp_sugeridas);
-        //}
         /*
             Si ya existe dentro de las materias sugeridas no la toma en cuenta
             Tampoco la toma en cuenta si es correlativa pero ya esta aprobada
@@ -211,7 +192,6 @@ export class EncuestaService {
             if (this.materias_sugeridas.length == 0) {
                 for(var i = 0; i<materias_sug.length; i++) {
                     if (!(this.existeMateriaSugeridaYa(materias_sug[i]['nombre']))) {
-                        // materias_sug[i]['estado'] = EstadoMateria.VoyACursar;
                         this.materias_sugeridas.push(materias_sug[i]);
                         // Quito la materia de la lista de materias generales para que no este duplicada
                         this.eliminarMateriaDeMateriasGenerales(materias_sug[i]['nombre']);
@@ -247,23 +227,16 @@ export class EncuestaService {
             var tmp = this.lista_materias.filter(x => x['estado'] === estadoMateria);
             var tmp2 = this.materias_sugeridas.filter(x => x['estado'] === estadoMateria);
             var tmp_materias = (tmp.concat(tmp2)).concat(tmp3);
-
             return tmp_materias;
         }
-
 
         private generarEncuesta(): Encuesta {
             this.generarMateriasParaEncuesta();
             var encuesta: Encuesta = new Encuesta(this.legajo);
             encuesta.setMateriasACursar(this.materias_a_cursar);
-            console.log("Aprobdas");
-            console.log(this.materias_aprobadas);
-            console.log("Ya Aprobe");
-            console.log(this.materias_yaaprobe);
             encuesta.setMateriasAprobadas(this.materias_yaaprobe.concat(this.materias_aprobadas));
             encuesta.setMateriasTodaviaNo(this.materias_todavia_no);
             encuesta.setMateriasNoPuedoPorHorario(this.materias_no_puedohorario);
-
             return encuesta;
         }
 }
