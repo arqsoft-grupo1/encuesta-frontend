@@ -16,15 +16,9 @@ export class HomepageComponent implements OnInit {
 
     email: any;
     legajo: number;
-
     esDirector = false;
-
     director;
-
     passwordInput: string;
-
-    // animal: string;
-
     value: string;
 
     constructor(private router: Router, private ofertaService: OfertaService ,private utilidadesService: UtilidadesService, private http: HttpClient, public dialog: MatDialog, public snackBar: MatSnackBar) { }
@@ -40,14 +34,12 @@ export class HomepageComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
           if(result == this.director['password']){
-            //   this.router.navigate(['/vista-director/' + this.director.password], { queryParams: this.director.password, skipLocationChange: true});
               this.router.navigate(['/vista-director/'], { queryParams: {password: this.director.password}, skipLocationChange: true});
           } else {
               this.snackBar.open("Contraseña incorrecta", "", {
               duration: 3000,
               });
           }
-        // console.log('The dialog was closed');
       });
     }
 
@@ -57,15 +49,17 @@ export class HomepageComponent implements OnInit {
                 this.esDirector = true;
                 this.director = data;
                 this.openDialog();
-                // this.router.navigate(['/vista-director/']);
             },
             err => {
-
-                //  console.log(this.email);
-                this.ofertaService.sendMailToken(this.email);
-                this.email = '';
-                this.snackBar.open('URL de la encuesta, enviada al mail', '', {duration: 3000});
-                // this.router.navigate(['/encuesta/' + this.legajo + '/' + this.email]);
+                this.ofertaService.sendMailToken(this.email).subscribe(
+                    data => {
+                        this.email = '';
+                        this.snackBar.open('URL de la encuesta, enviada al mail', '', {duration: 3000});
+                    },
+                    err => {
+                        this.snackBar.open('No existe el alumno en la base de datos', '', {duration: 3000});
+                    }
+                );
             }
       );
     }

@@ -23,10 +23,9 @@ export class OfertaService {
     }
 
     sendMailToken(mail) {
-        console.log(mail);
         var ruta_tmp = this.ruta + '/token/' + mail;
-        console.log(ruta_tmp);
-        return this.http.get(ruta_tmp).subscribe();
+        // return this.http.get(ruta_tmp).subscribe();
+        return this.http.get(ruta_tmp);
     }
 
     getOferta(token) {
