@@ -32,7 +32,7 @@ export class ListaOfertaComponent implements OnInit {
         materias: Es la lista de materias que no se incluyen ni aprobadas ni sugeridas, de esta manera evitar informacion
                   duplicada.
     */
-    constructor(private route: ActivatedRoute, private encuestaService: EncuestaService, private ofertaService: OfertaService, public snackBar: MatSnackBar) {
+    constructor(private router: Router, private route: ActivatedRoute, private encuestaService: EncuestaService, private ofertaService: OfertaService, public snackBar: MatSnackBar) {
         this.route.params.subscribe( params => {
             this.token = params['token'],
             encuestaService.getAlumnoByToken(this.token).subscribe(
@@ -40,9 +40,10 @@ export class ListaOfertaComponent implements OnInit {
                     this.mail = data['mail'];
                 },
                 err => {
-                    this.snackBar.open("Ha ocurrido un error, por favor intente nuevamente", "", {
-                    duration: 3000,
+                    this.snackBar.open("Ha ocurrido un error, verifique el token de la encuesta", "", {
+                        duration: 3000,
                     });
+                    this.router.navigate(['/homepage']);
                 }
             );
         })
