@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DetalleEncuestaComponent {
   title = 'app';
    materias$;
-
+   alumno;
   legajo: number;
   private sub: any;
 
@@ -24,7 +24,14 @@ export class DetalleEncuestaComponent {
         this.sub = this.route.params.subscribe(
             params => {
                 this.encuestaService.setToken(params['token']),
+                this.alumno = this.encuestaService.getAlumnoByToken(params['token']).subscribe(
+                    data => {
+                        this.alumno = data;
+                    }
+                );
                 this.encuestaService.setLegajoByToken()
+                console.log(this.alumno)
+
         });
         this.materias$ = this.encuestaService.getMaterias();
     }
