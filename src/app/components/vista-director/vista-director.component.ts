@@ -22,7 +22,7 @@ export class VistaDirectorComponent implements OnInit {
 
     getHayAlgunaComisionSaturada(materia){
         for (var value of materia.comisiones) {
-          if(value.inscriptos.length > 25){
+          if(value.inscriptos.length > 8){
               return true;
           }
         }
@@ -34,10 +34,10 @@ export class VistaDirectorComponent implements OnInit {
     }
 
     getColor(comision){
-        if(comision.inscriptos.length > 25){
+        if(comision.inscriptos.length > 8){
             return "warn";
         } else{
-            if(comision.inscriptos.length >= 20){
+            if(comision.inscriptos.length >= 6){
                 return "accent";
             }
         }
