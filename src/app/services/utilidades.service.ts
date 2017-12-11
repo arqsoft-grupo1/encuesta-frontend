@@ -14,7 +14,7 @@ export class UtilidadesService {
   }
 
   getEncuestasRespondidas(){
-      return this.http.get('https://arq-sof-encuesta-backend.herokuapp.com/api/encuesta/porcentaje_respuestas');
+      return this.http.get('http://arq-sof-encuesta-backend.herokuapp.com/api/encuesta/porcentaje_respuestas');
   }
 
   getMateriasOrdenadasPorSaturacion(){
