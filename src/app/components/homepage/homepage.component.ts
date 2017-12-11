@@ -34,7 +34,7 @@ export class HomepageComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
           if(result == this.director['password']){
-              this.router.navigate(['/vista-director/']);
+              this.router.navigate(['/vista-director/'], { queryParams: {password: this.director.password}, skipLocationChange: true});
           } else {
               this.snackBar.open("Contraseña incorrecta", "", {
               duration: 3000,

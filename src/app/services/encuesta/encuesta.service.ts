@@ -30,8 +30,6 @@ export class EncuestaService {
             var encuesta: Encuesta = this.generarEncuesta();
             const body = encuesta.getMaterias();
             body['legajo'] = this.legajo
-            console.log("tokeeeeeen: ")
-            console.log(this.token);
             const req = this.http.put('https://arq-sof-encuesta-backend.herokuapp.com/api/encuesta/' + this.token, body);
             req.subscribe();
         }
@@ -50,7 +48,6 @@ export class EncuestaService {
                     this.legajo = data['legajo'];
                 },
                 err => {
-                    console.log("No se pudo traer el alumno");
                 }
             );
         }
@@ -89,7 +86,6 @@ export class EncuestaService {
           * Evitar hacer this.user.push() pues estaríamos modificando los valores directamente,
           * se debe generar un nuevo array !!!!.
           */
-          console.log("Intenta borrar");
           materia['estado'] = undefined;
           this.materias_a_cursar.splice(this.materias_a_cursar.indexOf(materia), 1);
           this.refresh();
@@ -137,8 +133,6 @@ export class EncuestaService {
         */
         private setEstadoMateriasRestantes() {
             for(var i = 0; i < this.lista_materias.length; i++) {
-                console.log("Pasa por aca");
-                console.log(this.lista_materias[i]['estado']);
                 if (this.lista_materias[i]['estado'] === 'yaaprobe') {
                     this.lista_materias[i]['estado'] = EstadoMateria.YaAprobe;
                 };
@@ -156,12 +150,6 @@ export class EncuestaService {
         private acomodarListasdeMaterias() {
             this.filtrarAprobadas();
             this.generarMateriasSugeridas();
-            console.log("Aprobadas ");
-            console.log(this.materias_aprobadas);
-            console.log("Sugeridas");
-            console.log(this.materias_sugeridas);
-            console.log("Restantes");
-            console.log(this.lista_materias);
         }
 
         private filtrarAprobadas() {
